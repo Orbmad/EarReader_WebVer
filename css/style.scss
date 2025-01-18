@@ -1,0 +1,95 @@
+$mainGreen : #98B895;
+$mainBrown : #AC8E58;
+$darkBrown : #524629;
+$plain : #F6F2EF;
+$black : #000000;
+$imageStandardWidth : 30px;
+
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+body {
+    background-image: url('../upload/paperTextureBackground.jpg');
+    background-repeat: repeat;
+    background-size: cover;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 0;
+    padding: 0; 
+}
+
+header {
+    @include flexCenter(row);
+    h1 {
+        color: $darkBrown;
+        font-size: 48px;
+        font-weight: bolder;
+        margin: 10px;
+        margin-top: 15px;
+    }
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $mainGreen;
+    height: 75px;
+    padding: 5px 10px;
+    section.search {
+        width: 25%;
+        @include flexCenter(row);
+        background-color: $plain;
+        height: 30px;
+        margin: 5px 15px;
+        padding: 5px 20px;
+        border-radius: 25px;
+        justify-content: space-between;
+        label {
+            display: none;
+        }
+        input[type="image"] {
+            width: 20px;
+            padding: 5px;
+            &:hover {
+                width:24px;
+                padding: 3px;
+            }
+        }
+        input[name="fastSearch"] {
+            border: none;
+            background-color: $plain;
+            &:focus {
+                border: none;
+                outline: none;
+            }
+        }
+    }
+    section.nav-buttons {
+        @include flexCenter(row);
+        background-color: $mainGreen;
+        gap: 10px;
+        margin: 5px 15px;
+        button {
+            background-color: $mainGreen;
+            border: none;
+            height: 100%;
+            cursor: pointer;
+            img {
+                width: 50px;
+            }
+            &:hover {
+                scale: 1.1;
+            }
+        }
+        button.logout-button {
+            padding-top: 5px;
+            img {
+                width: 45px;
+            }
+        }
+    }
+}

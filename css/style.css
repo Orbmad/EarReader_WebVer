@@ -1,0 +1,90 @@
+body {
+  background-image: url("../upload/paperTextureBackground.jpg");
+  background-repeat: repeat;
+  background-size: cover;
+  font-family: "Josefin Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+header h1 {
+  color: #524629;
+  font-size: 48px;
+  font-weight: bolder;
+  margin: 10px;
+  margin-top: 15px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #98B895;
+  height: 75px;
+  padding: 5px 10px;
+}
+nav section.search {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: #F6F2EF;
+  height: 30px;
+  margin: 5px 15px;
+  padding: 5px 20px;
+  border-radius: 25px;
+  justify-content: space-between;
+}
+nav section.search label {
+  display: none;
+}
+nav section.search input[type=image] {
+  width: 20px;
+  padding: 5px;
+}
+nav section.search input[type=image]:hover {
+  width: 24px;
+  padding: 3px;
+}
+nav section.search input[name=fastSearch] {
+  border: none;
+  background-color: #F6F2EF;
+}
+nav section.search input[name=fastSearch]:focus {
+  border: none;
+  outline: none;
+}
+nav section.nav-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: #98B895;
+  gap: 10px;
+  margin: 5px 15px;
+}
+nav section.nav-buttons button {
+  background-color: #98B895;
+  border: none;
+  height: 100%;
+  cursor: pointer;
+}
+nav section.nav-buttons button img {
+  width: 50px;
+}
+nav section.nav-buttons button:hover {
+  scale: 1.1;
+}
+nav section.nav-buttons button.logout-button {
+  padding-top: 5px;
+}
+nav section.nav-buttons button.logout-button img {
+  width: 45px;
+}/*# sourceMappingURL=style.css.map */

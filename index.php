@@ -3,7 +3,7 @@
 
     //Params
     $params["title"] = "Ear-Reader Login";
-    $params["main"] = "login.php";
+    $params["main"] = "login-form.php";
 
     
     require 'template/base.php';

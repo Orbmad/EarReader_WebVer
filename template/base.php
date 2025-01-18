@@ -16,11 +16,31 @@
 <body>
 
     <header>
-
+        <h1>Ear-Reader</h1>
     </header>
 
     <nav>
-
+        <section class="search">
+            <label for="fastSearch">Ricerca rapida</label>
+            <section class="search-text">
+                <input type="text" id="fastSearch" name="fastSearch" placeholder="Cerca testi..."
+                    value="<?php if(isset($params["search"])){echo($params["search"]);}?>"
+                />
+            </section>
+            <input class="searchbar-icon search-button" type="image" src="upload/search-icon.png" alt="Submit search" />
+        </section>
+        <!--Da inserire conteggio valuta-->
+        <section class="nav-buttons">
+            <button class="home-button">
+                <img src="upload/home.png" alt="home">
+            </button>
+            <button class="library-button">
+                <img src="upload/book.png" alt="libreria">
+            </button>
+            <button class="logout-button">
+                <img src="upload/logout.png" alt="disconnetti">
+            </button>
+        </section>
     </nav>
 
     <?php
