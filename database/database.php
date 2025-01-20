@@ -90,7 +90,10 @@ class Database
         }
     }
 
-    private function updateTextRate($textCode) {
+    /**
+     * Updates the text ranking
+     */
+    public function updateTextRate($textCode) {
         $query = "UPDATE Testi
                 SET Voto = (
                     SELECT AVG(Voto)
@@ -101,6 +104,38 @@ class Database
         try {
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('s', $textCode);
+            $stmt->execute();
+            return true;
+        } catch (PDOException) {
+            return false;
+        }
+    }
+
+    public function getAuthors() {
+        $query = "SELECT * FROM Autori";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all();
+    }
+
+    /**
+     * Updates the author ranking
+     */
+    public function updateAuthorRate($authorCode) {
+        $query = "UPDATE Autori
+                SET Punteggio = (
+                    SELECT AVG(Voto)
+                    FROM Testi T
+                    JOIN Scritture S ON T.Codice = S.CodiceTesto
+                    JOIN Autori A ON A.CodiceAutore = S.CodiceAutore
+                    WHERE A.CodiceAutore = ?
+                )
+                WHERE CodiceAutore = ?";
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $authorCode);
             $stmt->execute();
             return true;
         } catch (PDOException) {
@@ -346,12 +381,44 @@ class Database
     }
 
     /**
-     * Returns the topics ranking
+     * Returns the topics ranking. [OP10]
      */
     public function getTopicRanking() {
         $query = "SELECT * FROM Discussioni
                 ORDER BY NumeroCommenti DESC, Titolo ASC";
         $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all();
+    }
+
+
+
+    /**
+     * Returns suggested texts. [OP11]
+     */
+    public function suggestedTexts($email) {
+        $query = "SELECT *
+                FROM Testi T
+                JOIN Contiene C ON T.Codice = C.CodiceTesto
+                JOIN Tag TA ON TA.Codice = C.CodiceTag
+                WHERE TA.Codice IN (
+                    SELECT DISTINCT TA1.Codice
+                    FROM Tag TA1
+                    JOIN Contiene C1 ON C1.CodiceTag = TA1.Codice
+                    JOIN Testi T2 ON T2.Codice = C1.CodiceTesto
+                    WHERE T2.Codice IN (
+                        SELECT T3.Codice
+                        FROM Testi T3
+                        JOIN Recensioni R ON T3.Codice = R.CodiceTesto
+                        WHERE R.Email = ?
+                        ORDER BY R.Voto DESC
+                        LIMIT 5
+                    )
+                )";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
