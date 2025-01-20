@@ -31,7 +31,8 @@ input {
     box-shadow: inset 2px 2px 1px $darkBrown;
 }
 
-input[type="submit"], button {
+input[type="submit"],
+button {
     border: 2px solid $darkBrown;
     border-radius: 30px;
     background-color: $darkBrown;
@@ -41,10 +42,12 @@ input[type="submit"], button {
     padding: 10px 20px;
     width: 40%;
     cursor: pointer;
+
     &:hover {
         scale: 1.1;
     }
 }
+
 //End general rules
 
 body {
@@ -59,6 +62,7 @@ body {
 
 header {
     @include flexCenter(row);
+
     h1 {
         color: $darkBrown;
         font-size: 52px;
@@ -72,9 +76,34 @@ footer {
     @include flexCenter(column);
     color: $plain;
     background-color: $darkBrown;
+    padding: 20px;
+
+    h1 {
+        margin: 0px;
+        margin-bottom: 16px
+    }
+
     a {
+        @include flexCenter(row);
+        cursor: pointer;
+        align-items: end;
+        min-height: 30px;
+        color: $plain;
+        text-decoration: none;
+
         img {
-            height: 25px;
+            padding: 3px;
+            height: 24px;
+            margin-right: 6px;
+        }
+
+        p {
+            @include flexCenter(row);
+            margin: 0px;
+            padding-top: 4px;
+            align-self: center;
+            font-size: 18px;
+            text-decoration: underline;
         }
     }
 }
@@ -86,8 +115,12 @@ nav {
     background-color: $mainGreen;
     height: 75px;
     padding: 5px 10px;
-    section.search {
+
+    section {
         width: 25%;
+    }
+
+    section.search {
         @include flexCenter(row);
         background-color: $plain;
         height: 30px;
@@ -95,50 +128,84 @@ nav {
         padding: 5px 20px;
         border-radius: 25px;
         justify-content: space-between;
+
         label {
             display: none;
         }
+
         input[type="image"] {
             box-shadow: none;
             border: none;
             border-radius: 0px;
             width: 20px;
             padding: 5px;
+
             &:hover {
-                width:24px;
+                width: 24px;
                 padding: 3px;
             }
         }
+
         input[name="fastSearch"] {
             border: none;
             box-shadow: none;
             background-color: $plain;
+
             &:focus {
                 border: none;
                 outline: none;
             }
         }
     }
+
+    section.user-currency {
+        @include flexCenter(row);
+
+        a {
+            @include flexCenter(row);
+            text-decoration: none;
+            border: 1px solid $darkBrown;
+            border-radius: 30px;
+            height: 60px;
+            padding: 0px 20px;
+            img {
+                width: 60px;
+            }
+
+            p {
+                color: $plain;
+                font-size: 26px;
+                font-weight: bolder
+            }
+        }
+    }
+
     section.nav-buttons {
         @include flexCenter(row);
+        justify-content: right;
         background-color: $mainGreen;
         margin: 5px 15px;
-        button {
+
+        a {
             background-color: $mainGreen;
             border: none;
             height: 100%;
-            width: 100%;
+            width: fit-content;
             padding: 10px;
             cursor: pointer;
+
             img {
                 width: 50px;
             }
+
             &:hover {
                 scale: 1.1;
             }
         }
-        button.logout-button {
+
+        a.logout-button {
             padding-top: 15px;
+
             img {
                 height: 45px;
             }
@@ -149,8 +216,10 @@ nav {
 main {
     @include flexCenter(row);
     padding: 30px;
-    min-height: 360px;
-    &.login, &.signup {
+    min-height: 400px;
+
+    &.login,
+    &.signup {
         section {
             @include flexCenter(column);
             @include boxShadow();
@@ -160,26 +229,31 @@ main {
             border-radius: 10px;
             max-width: 50%;
             min-height: 300px;
+
             h1 {
                 color: $darkBrown;
                 font-size: 36px;
                 font-weight: bold;
                 margin: 10px;
             }
+
             form {
                 color: $darkBrown;
                 width: 100%;
+
                 ul {
                     list-style: none;
                     display: flex;
                     flex-direction: column;
                     padding: 10px;
                     width: 100%;
+
                     li {
                         font-size: 26px;
                         display: flex;
                         padding: 5px 20px;
                         justify-content: space-between;
+
                         &:last-child {
                             margin-top: 15px;
                         }

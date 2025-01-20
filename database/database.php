@@ -59,7 +59,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -72,7 +72,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -117,7 +117,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -241,7 +241,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -253,7 +253,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -286,7 +286,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -299,7 +299,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -314,7 +314,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -327,7 +327,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -343,7 +343,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -356,7 +356,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();   
+        return $result->fetch_all(MYSQLI_ASSOC);   
     }
 
     /**
@@ -377,7 +377,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -390,7 +390,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
 
@@ -422,6 +422,6 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }

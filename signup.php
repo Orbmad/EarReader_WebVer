@@ -1,6 +1,8 @@
 <?php
     require_once 'bootstrap.php';
 
+    loginRedirect();
+
     //Params
     $params["title"] = "Ear-Reader SignUp";
     $params["main"] = "signup-form.php";

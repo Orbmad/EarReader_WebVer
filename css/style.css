@@ -6,7 +6,8 @@ input {
   box-shadow: inset 2px 2px 1px #524629;
 }
 
-input[type=submit], button {
+input[type=submit],
+button {
   border: 2px solid #524629;
   border-radius: 30px;
   background-color: #524629;
@@ -17,7 +18,8 @@ input[type=submit], button {
   width: 40%;
   cursor: pointer;
 }
-input[type=submit]:hover, button:hover {
+input[type=submit]:hover,
+button:hover {
   scale: 1.1;
 }
 
@@ -52,9 +54,38 @@ footer {
   flex-direction: column;
   color: #F6F2EF;
   background-color: #524629;
+  padding: 20px;
+}
+footer h1 {
+  margin: 0px;
+  margin-bottom: 16px;
+}
+footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  cursor: pointer;
+  align-items: end;
+  min-height: 30px;
+  color: #F6F2EF;
+  text-decoration: none;
 }
 footer a img {
-  height: 25px;
+  padding: 3px;
+  height: 24px;
+  margin-right: 6px;
+}
+footer a p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin: 0px;
+  padding-top: 4px;
+  align-self: center;
+  font-size: 18px;
+  text-decoration: underline;
 }
 
 nav {
@@ -65,8 +96,10 @@ nav {
   height: 75px;
   padding: 5px 10px;
 }
-nav section.search {
+nav section {
   width: 25%;
+}
+nav section.search {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,32 +134,59 @@ nav section.search input[name=fastSearch]:focus {
   border: none;
   outline: none;
 }
+nav section.user-currency {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+nav section.user-currency a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  text-decoration: none;
+  border: 1px solid #524629;
+  border-radius: 30px;
+  height: 60px;
+  padding: 0px 20px;
+}
+nav section.user-currency a img {
+  width: 60px;
+}
+nav section.user-currency a p {
+  color: #F6F2EF;
+  font-size: 26px;
+  font-weight: bolder;
+}
 nav section.nav-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  justify-content: right;
   background-color: #98B895;
   margin: 5px 15px;
 }
-nav section.nav-buttons button {
+nav section.nav-buttons a {
   background-color: #98B895;
   border: none;
   height: 100%;
-  width: 100%;
+  width: -moz-fit-content;
+  width: fit-content;
   padding: 10px;
   cursor: pointer;
 }
-nav section.nav-buttons button img {
+nav section.nav-buttons a img {
   width: 50px;
 }
-nav section.nav-buttons button:hover {
+nav section.nav-buttons a:hover {
   scale: 1.1;
 }
-nav section.nav-buttons button.logout-button {
+nav section.nav-buttons a.logout-button {
   padding-top: 15px;
 }
-nav section.nav-buttons button.logout-button img {
+nav section.nav-buttons a.logout-button img {
   height: 45px;
 }
 
@@ -136,7 +196,7 @@ main {
   align-items: center;
   flex-direction: row;
   padding: 30px;
-  min-height: 360px;
+  min-height: 400px;
 }
 main.login section, main.signup section {
   display: flex;

@@ -1,2 +1,5 @@
 - Controlla relazione, costo in pagamenti;
 - La OP02 deve contemplare la sottrazione degli EarCoins dall'utente.
+
+
+-> Aggiungere punto esclamativo nella function redirect.

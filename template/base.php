@@ -29,17 +29,22 @@
             </section>
             <input class="searchbar-icon search-button" type="image" src="upload/search-icon.png" alt="Submit search" />
         </section>
-        <!--Da inserire conteggio valuta-->
+        <section class="user-currency">
+            <a href="#">
+                <img src="upload/elf-ear.png" alt="">
+                <p><?php echo getUserCurrency() ?></p>
+            </a>
+        </section>
         <section class="nav-buttons">
-            <button class="home-button">
+            <a class="home-button" href="home.php">
                 <img src="upload/home.png" alt="home">
-            </button>
-            <button class="library-button">
+            </a>
+            <a class="library-button">
                 <img src="upload/book.png" alt="libreria">
-            </button>
-            <button class="logout-button">
+            </a>
+            <a class="logout-button" href="utils/api-logout.php">
                 <img src="upload/logout.png" alt="disconnetti">
-            </button>
+            </a>
         </section>
     </nav>
 
@@ -51,10 +56,11 @@
 
     <footer>
         <h1>Autore</h1>
-        <a> <!-- DA SISTEMARE -->
+        <a href="https://github.com/Orbmad">
             <img src="upload/github.png" alt="github icon" />
-            <span>Testolone</span>
+            <p>Profilo Github</p>
         </a>
+        <a href="#">manuele.dambrosio@studio.unibo.it</a>
     </footer>
 
     <!--Inserimento javascript-->
