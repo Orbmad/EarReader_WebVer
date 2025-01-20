@@ -12,24 +12,64 @@ $imageStandardWidth : 30px;
     flex-direction: $direction;
 }
 
+@mixin boxShadow() {
+    box-shadow: 3px 3px 1px $darkBrown;
+}
+
+@mixin border() {
+    border: 2px solid $mainGreen;
+}
+
+//General rules
+input {
+    @include border();
+    min-height: 20px;
+    border-radius: 20px;
+    padding: 5px 15px;
+    box-shadow: inset 2px 2px 1px $darkBrown;
+}
+
+input[type="submit"], button {
+    border: 2px solid $darkBrown;
+    border-radius: 30px;
+    background-color: $darkBrown;
+    color: $plain;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 10px 20px;
+    width: 40%;
+    cursor: pointer;
+    &:hover {
+        scale: 1.1;
+    }
+}
+//End general rules
+
 body {
     background-image: url('../upload/paperTextureBackground.jpg');
     background-repeat: repeat;
     background-size: cover;
     font-family: 'Josefin Sans', sans-serif;
     margin: 0;
-    padding: 0; 
+    padding: 0;
+    height: 100vh;
 }
 
 header {
     @include flexCenter(row);
     h1 {
         color: $darkBrown;
-        font-size: 48px;
+        font-size: 52px;
         font-weight: bolder;
         margin: 10px;
         margin-top: 15px;
     }
+}
+
+footer {
+    @include flexCenter(row);
+    color: $plain;
+    background-color: $darkBrown;
 }
 
 nav {
@@ -89,6 +129,49 @@ nav {
             padding-top: 5px;
             img {
                 width: 45px;
+            }
+        }
+    }
+}
+
+main {
+    @include flexCenter(row);
+    height: 82%;
+    &.login {
+        section {
+            @include flexCenter(column);
+            @include boxShadow();
+            @include border();
+            background-color: $plain;
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 50%;
+            height: 300px;
+            h1 {
+                color: $darkBrown;
+                font-size: 36px;
+                font-weight: bold;
+                margin: 10px;
+            }
+            form {
+                color: $darkBrown;
+                width: 100%;
+                ul {
+                    list-style: none;
+                    display: flex;
+                    flex-direction: column;
+                    padding: 10px;
+                    width: 100%;
+                    li {
+                        font-size: 26px;
+                        display: flex;
+                        padding: 5px 20px;
+                        justify-content: space-between;
+                        &:last-child {
+                            margin-top: 15px;
+                        }
+                    }
+                }
             }
         }
     }

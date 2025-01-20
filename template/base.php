@@ -44,13 +44,13 @@
     </nav>
 
     <?php
-    if (isset($templateParams["main"])) {
-        require($templateParams["main"]);
+    if (isset($params["main"])) {
+        require($params["main"]);
     }
     ?>
 
     <footer>
-
+        <h1>Autore</h1>
     </footer>
 
     <!--Inserimento javascript-->

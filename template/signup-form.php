@@ -1,7 +1,7 @@
 <main class="login">
     <section>
-        <h1>Login</h1>
-        <form action="utils/api-login.php" method="POST">
+        <h1>SignUp</h1>
+        <form action="#" method="POST">
             <ul>
                 <li>
                     <label for="email">Email:</label>
@@ -12,8 +12,7 @@
                     <input type="password" id="password" name="password"/>
                 </li>
                 <li>
-                    <input type="submit" name="signup" value="signup" />
-                    <input type="submit" name="submit" value="Accedi" />
+                    <input type="submit" name="submit" value="Iscriviti" />
                 </li>
             </ul>
         </form>
