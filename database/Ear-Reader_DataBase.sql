@@ -1,4 +1,4 @@
---Tables Creation----------------------
+-- Tables Creation ----------------------
 
 CREATE database if not exists Earreader;
 use Earreader;
@@ -9,14 +9,14 @@ CREATE TABLE Generi (
 
 CREATE TABLE Testi (
     Codice INT AUTO_INCREMENT PRIMARY KEY,
-    Data DATE NOT NULL,
+    Data_ora DATE NOT NULL,
     Titolo VARCHAR(255) NOT NULL,
     Singolo BOOLEAN NOT NULL,
     Percorso VARCHAR(255) NOT NULL,
     Costo INT NOT NULL,
-    Voto DECIMAL(2, 1) DEFAULT 0,
+    Voto DECIMAL(3, 1) DEFAULT 0,
     NomeGenere VARCHAR(50) NOT NULL,
-    FOREIGN KEY (NomeGenere) REFERENCES Generi(NomeGeneri)
+    FOREIGN KEY (NomeGenere) REFERENCES Generi(NomeGenere)
 );
 
 CREATE TABLE Gruppi (
@@ -63,7 +63,7 @@ CREATE TABLE Contiene (
 CREATE TABLE Capitoli (
     CodiceTesto INT NOT NULL,
     Numero INT NOT NULL,
-    Data DATE DEFAULT NULL,
+    Data_ora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PercorsoCapitolo VARCHAR(255) NOT NULL,
     Titolo VARCHAR(255) NOT NULL,
     PRIMARY KEY (CodiceTesto, Numero),
@@ -73,7 +73,7 @@ CREATE TABLE Capitoli (
 CREATE TABLE Utenti (
     Email VARCHAR(100) PRIMARY KEY,
     Nickname VARCHAR(50) UNIQUE NOT NULL,
-    Password VARCHAR(255) NOT NULL,
+    Password_hash VARCHAR(255) NOT NULL,
     EarCoins INT DEFAULT 500
 );
 
@@ -82,7 +82,7 @@ CREATE TABLE AcquistiCap (
     CodiceTesto INT NOT NULL,
     Email VARCHAR(100) NOT NULL,
     PRIMARY KEY (Numero, CodiceTesto, Email),
-    FOREIGN KEY (Numero, CodiceTesto) REFERENCES Capitoli(Numero, CodiceTesto),
+    FOREIGN KEY (CodiceTesto, Numero) REFERENCES Capitoli(CodiceTesto, Numero),
     FOREIGN KEY (Email) REFERENCES Utenti(Email)
 );
 
@@ -100,7 +100,7 @@ CREATE TABLE Sconti (
 CREATE TABLE Pagamenti (
     CodicePagamento INT AUTO_INCREMENT NOT NULL,
     Email VARCHAR(100) NOT NULL,
-    Data DATE NOT NULL,
+    Data_ora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     EarCoins INT NOT NULL,
     Costo INT NOT NULL,
     CodiceMetodo INT NOT NULL,
@@ -114,7 +114,7 @@ CREATE TABLE Pagamenti (
 CREATE TABLE Discussioni (
     Email VARCHAR(100) NOT NULL,
     Titolo VARCHAR(255) NOT NULL,
-    Data DATE NOT NULL,
+    Data_ora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Stringa TEXT NOT NULL,
     Argomento VARCHAR(255) NOT NULL,
     NumeroCommenti INT DEFAULT 0,
@@ -126,22 +126,22 @@ CREATE TABLE Commenti (
     Email VARCHAR(100) NOT NULL,
     Titolo VARCHAR(255) NOT NULL,
     Codice INT AUTO_INCREMENT NOT NULL,
-    Data DATE NOT NULL,
+    Data_ora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Stringa TEXT NOT NULL,
     EmailUtente VARCHAR(100),
-    PRIMARY KEY (Email, Titolo, Codice),
+    PRIMARY KEY (Codice, Email, Titolo),
     FOREIGN KEY (Email, Titolo) REFERENCES Discussioni(Email, Titolo),
     FOREIGN KEY (EmailUtente) REFERENCES Utenti(Email)
 );
 
 CREATE TABLE Valutazioni (
-    EmailUtente VARCHAR(100) NOT NULL
+    EmailUtente VARCHAR(100) NOT NULL,
     Email VARCHAR(100) NOT NULL,
     Titolo VARCHAR(255) NOT NULL,
     Codice INT NOT NULL,
     MiPiace BOOLEAN NOT NULL,
     PRIMARY KEY (EmailUtente, Email, Titolo, Codice),
-    FOREIGN KEY (EmailUtente) REFERENCES Utenti(Email)
+    FOREIGN KEY (EmailUtente) REFERENCES Utenti(Email),
     FOREIGN KEY (Email, Titolo, Codice) REFERENCES Commenti(Email, Titolo, Codice) 
 );
 

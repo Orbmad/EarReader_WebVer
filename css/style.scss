@@ -21,6 +21,8 @@ $imageStandardWidth : 30px;
 }
 
 //General rules
+
+
 input {
     @include border();
     min-height: 20px;
@@ -136,8 +138,8 @@ nav {
 
 main {
     @include flexCenter(row);
-    height: 82%;
-    &.login {
+    padding: 30px;
+    &.login, &.signup {
         section {
             @include flexCenter(column);
             @include boxShadow();
@@ -146,7 +148,7 @@ main {
             padding: 15px;
             border-radius: 10px;
             max-width: 50%;
-            height: 300px;
+            min-height: 300px;
             h1 {
                 color: $darkBrown;
                 font-size: 36px;

@@ -127,9 +127,9 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  height: 82%;
+  padding: 30px;
 }
-main.login section {
+main.login section, main.signup section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -140,31 +140,31 @@ main.login section {
   padding: 15px;
   border-radius: 10px;
   max-width: 50%;
-  height: 300px;
+  min-height: 300px;
 }
-main.login section h1 {
+main.login section h1, main.signup section h1 {
   color: #524629;
   font-size: 36px;
   font-weight: bold;
   margin: 10px;
 }
-main.login section form {
+main.login section form, main.signup section form {
   color: #524629;
   width: 100%;
 }
-main.login section form ul {
+main.login section form ul, main.signup section form ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   padding: 10px;
   width: 100%;
 }
-main.login section form ul li {
+main.login section form ul li, main.signup section form ul li {
   font-size: 26px;
   display: flex;
   padding: 5px 20px;
   justify-content: space-between;
 }
-main.login section form ul li:last-child {
+main.login section form ul li:last-child, main.signup section form ul li:last-child {
   margin-top: 15px;
 }/*# sourceMappingURL=style.css.map */

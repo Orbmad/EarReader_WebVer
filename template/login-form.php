@@ -1,6 +1,9 @@
 <main class="login">
     <section>
         <h1>Login</h1>
+        <?php if(isset($_SESSION["loginMsg"])): ?>
+                <p><?php echo $_SESSION["loginMsg"]; ?></p>
+        <?php unset($_SESSION["loginMsg"]); endif; ?>
         <form action="utils/api-login.php" method="POST">
             <ul>
                 <li>
