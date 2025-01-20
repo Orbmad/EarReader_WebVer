@@ -7,10 +7,12 @@
     } else {
         $_SESSION["user"] = $db->checkLogin($_POST["email"], $_POST["password"]);
         if (isset($_SESSION["user"])) {
-            header("Location: home.php");
+            header("Location: ../home.php");
             exit;
         } else {
             $_SESSION["loginMsg"] = "ERRORE: Email o password errate!";
+            header("Location: ../index.php");
+            exit;
         }
     }
     //DA INSERIRE QUERY DI ACCESSO

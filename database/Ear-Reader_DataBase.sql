@@ -102,7 +102,7 @@ CREATE TABLE Pagamenti (
     Email VARCHAR(100) NOT NULL,
     Data_ora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     EarCoins INT NOT NULL,
-    Costo INT NOT NULL,
+    -- Costo INT NOT NULL,
     CodiceMetodo INT NOT NULL,
     CodiceSconto INT NOT NULL,
     PRIMARY KEY (CodicePagamento, Email),

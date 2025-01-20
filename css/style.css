@@ -79,6 +79,9 @@ nav section.search label {
   display: none;
 }
 nav section.search input[type=image] {
+  box-shadow: none;
+  border: none;
+  border-radius: 0px;
   width: 20px;
   padding: 5px;
 }
@@ -88,6 +91,7 @@ nav section.search input[type=image]:hover {
 }
 nav section.search input[name=fastSearch] {
   border: none;
+  box-shadow: none;
   background-color: #F6F2EF;
 }
 nav section.search input[name=fastSearch]:focus {
@@ -100,13 +104,14 @@ nav section.nav-buttons {
   align-items: center;
   flex-direction: row;
   background-color: #98B895;
-  gap: 10px;
   margin: 5px 15px;
 }
 nav section.nav-buttons button {
   background-color: #98B895;
   border: none;
   height: 100%;
+  width: 100%;
+  padding: 10px;
   cursor: pointer;
 }
 nav section.nav-buttons button img {
@@ -116,10 +121,10 @@ nav section.nav-buttons button:hover {
   scale: 1.1;
 }
 nav section.nav-buttons button.logout-button {
-  padding-top: 5px;
+  padding-top: 15px;
 }
 nav section.nav-buttons button.logout-button img {
-  width: 45px;
+  height: 45px;
 }
 
 main {
@@ -128,6 +133,7 @@ main {
   align-items: center;
   flex-direction: row;
   padding: 30px;
+  min-height: 360px;
 }
 main.login section, main.signup section {
   display: flex;

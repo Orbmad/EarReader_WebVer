@@ -94,6 +94,9 @@ nav {
             display: none;
         }
         input[type="image"] {
+            box-shadow: none;
+            border: none;
+            border-radius: 0px;
             width: 20px;
             padding: 5px;
             &:hover {
@@ -103,6 +106,7 @@ nav {
         }
         input[name="fastSearch"] {
             border: none;
+            box-shadow: none;
             background-color: $plain;
             &:focus {
                 border: none;
@@ -113,12 +117,13 @@ nav {
     section.nav-buttons {
         @include flexCenter(row);
         background-color: $mainGreen;
-        gap: 10px;
         margin: 5px 15px;
         button {
             background-color: $mainGreen;
             border: none;
             height: 100%;
+            width: 100%;
+            padding: 10px;
             cursor: pointer;
             img {
                 width: 50px;
@@ -128,9 +133,9 @@ nav {
             }
         }
         button.logout-button {
-            padding-top: 5px;
+            padding-top: 15px;
             img {
-                width: 45px;
+                height: 45px;
             }
         }
     }
@@ -139,6 +144,7 @@ nav {
 main {
     @include flexCenter(row);
     padding: 30px;
+    min-height: 360px;
     &.login, &.signup {
         section {
             @include flexCenter(column);
