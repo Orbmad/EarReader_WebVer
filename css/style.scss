@@ -69,9 +69,14 @@ header {
 }
 
 footer {
-    @include flexCenter(row);
+    @include flexCenter(column);
     color: $plain;
     background-color: $darkBrown;
+    a {
+        img {
+            height: 25px;
+        }
+    }
 }
 
 nav {

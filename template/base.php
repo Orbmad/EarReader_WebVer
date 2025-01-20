@@ -51,6 +51,10 @@
 
     <footer>
         <h1>Autore</h1>
+        <a> <!-- DA SISTEMARE -->
+            <img src="upload/github.png" alt="github icon" />
+            <span>Testolone</span>
+        </a>
     </footer>
 
     <!--Inserimento javascript-->

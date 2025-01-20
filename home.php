@@ -3,7 +3,7 @@
 
     //Params
     $params["title"] = "Ear-Reader Home";
-    //$params["main"] = "";
+    $params["main"] = "home-content.php";
     
     require 'template/base.php';
 ?>

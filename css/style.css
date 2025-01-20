@@ -49,9 +49,12 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   color: #F6F2EF;
   background-color: #524629;
+}
+footer a img {
+  height: 25px;
 }
 
 nav {
