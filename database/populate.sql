@@ -96,3 +96,111 @@ UPDATE Discussioni
 SET NumeroCommenti = NumeroCommenti + 1
 WHERE Titolo IN ("Classici italiani", "Romanzi rosa consigliati", "Migliori thriller", "Autori emergenti", "Libri di avventura", "Libri di fantascienza", "Libri per rilassarsi", "Graphic novel da leggere");
 
+-- Generi --
+INSERT INTO Generi (NomeGenere)
+VALUES
+('Fantasy'),
+('Sci-Fi'),
+('Giallo'),
+('Storico'),
+('Critico'),
+('Poesia');
+
+-- Tag --
+INSERT INTO Tag (Nome)
+VALUES
+('#En'),
+('#It'),
+('#Distopia'),
+('#Poesia'),
+('#Violenza'),
+('#Politica'),
+('#Introspettivo'),
+('#Investigazione'),
+('#Mistero'),
+('#Amore'),
+('#Guerra'),
+('#Drammatico');
+
+-- Gruppi --
+INSERT INTO Gruppi (NomeGruppo, Descrizione)
+VALUES
+('Consigliati', 'Una raccolta dei testi consigliati!'),
+('Best sellers', 'Una raccolta dei testi più famosi di sempre');
+
+-- Autori --
+INSERT INTO Autori (Nome, Alias)
+VALUES
+('Franz Kafka', 'Kafka'),
+('Ugo FOscolo', 'Foscolo'),
+('George Orwell', 'G. Orwell'),
+('Herbert George Well', 'H. G. Well'),
+('Arthur Conan Doyle', 'A. C. Doyle');
+
+-- Testi --
+INSERT INTO Testi (Titolo, Data_ora, Singolo, Percorso, Costo, NomeGenere)
+VALUES
+('1984', '1949-06-08', 1, 'files/1984/', 70, 'Sci-Fi'),
+('La fattoria degli animali', '1945-08-17', 0, 'files/la-fattoria-degli-animali/', 10, 'Critico'),
+('Il processo', '1925-01-01', 1, 'files/il-processo/', 30, 'Critico'),
+('La metamorfosi', '1915-01-01', 1, 'files/la-metamorfosi/', 40, 'Critico'),
+('Le ultime lettere di Jacopo Ortis', '1802-01-01', 1, 'files/le-ultime-lettere-di-Jacopo-Ortis/', 60, 'Poesia'),
+('The Hound of The Baskervilles', '1902-03-25', 0, 'files/the-hound-of-the-baskervilles/', 15, 'Giallo'),
+('The War of The Worlds', '1898-01-01', 0, 'files/the-war-of-the-worlds/', 6, 'Sci-Fi');
+
+-- Appartenenze --
+INSERT INTO Appartenenze (CodiceTesto, NomeGruppo)
+VALUES
+(8, 'Best sellers'), -- 1984
+(9, 'Best sellers'), -- La fattoria
+(13, 'Best sellers'), -- Basker
+(8, 'Consigliati'), -- 1984
+(12, 'Consigliati'), -- Jacopo
+(14, 'Consigliati'), -- war
+(9, 'Consigliati'); -- fattoria
+
+-- Scritture --
+INSERT INTO Scritture (CodiceAutore, CodiceTesto)
+VALUES
+(3, 8), -- 1984
+(3, 9), -- fattoria
+(1, 10), -- processo
+(1, 11), -- metam
+(2, 12), -- Jacopo
+(5, 13), -- hound
+(4, 14); -- war
+
+-- Contiene --
+INSERT INTO Contiene (CodiceTesto, CodiceTag)
+VALUES
+(13, 1), -- en
+(14, 1), -- en
+(8, 2), -- it
+(9, 2),
+(10, 2),
+(11, 2),
+(12, 2),
+(3, 3), -- dist
+(14, 3),
+(12, 4), -- poesia
+(14, 5), -- viol
+(13, 5),
+(8, 5),
+(8, 6), -- poli
+(9, 6),
+(12, 6),
+(12, 7), -- intro
+(10, 7),
+(11, 7),
+(13, 8), -- Invest
+(13, 9), -- mist
+(11, 9),
+(12, 10), -- amor
+(14, 11),
+(10, 12), -- drama
+(9, 12),
+(12, 12);
+
+-- Capitoli -- 
+INSERT INTO 
+
