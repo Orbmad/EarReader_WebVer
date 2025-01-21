@@ -320,6 +320,28 @@ main {
                     cursor: pointer;
                 }
             }
+
+            &.suggested {
+                height: auto;
+                max-height: 220px;
+                >p {
+                    margin: 10px 20px;
+                }
+            }
+
+            &.authors {
+                ul {
+                    li {
+                        a {
+                            width: 46%;
+                            text-decoration: none;
+                        }
+                        p {
+                            width: 46%;
+                        }
+                    }
+                }
+            }
         }
 
     }

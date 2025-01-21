@@ -293,6 +293,20 @@ main.home section li a {
   font-weight: bold;
   cursor: pointer;
 }
+main.home section.suggested {
+  height: auto;
+  max-height: 220px;
+}
+main.home section.suggested > p {
+  margin: 10px 20px;
+}
+main.home section.authors ul li a {
+  width: 46%;
+  text-decoration: none;
+}
+main.home section.authors ul li p {
+  width: 46%;
+}
 main.topic {
   padding: 30px;
 }

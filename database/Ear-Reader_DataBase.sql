@@ -65,7 +65,7 @@ CREATE TABLE Capitoli (
     Numero INT NOT NULL,
     Data_ora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PercorsoCapitolo VARCHAR(255) NOT NULL,
-    Titolo VARCHAR(255),
+    Titolo VARCHAR(255) NOT NULL,
     PRIMARY KEY (CodiceTesto, Numero),
     FOREIGN KEY (CodiceTesto) REFERENCES Testi(Codice)
 );

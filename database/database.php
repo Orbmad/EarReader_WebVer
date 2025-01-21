@@ -471,16 +471,9 @@ class Database
      * Returns authors ranking. [OP09]
      */
     public function getAuthorRanking() {
-        $query = "SELECT 
-            A.CodiceAutore, 
-            A.Nome, 
-            A.Alias, 
-            COALESCE(AVG(T.Voto), 0) AS MediaVoti
-            FROM Autori A
-            JOIN Scritture S ON A.CodiceAutore = S.CodiceAutore
-            JOIN Testi T ON S.CodiceTesto = T.Codice
-            GROUP BY A.CodiceAutore, A.Nome, A.Alias
-            ORDER BY MediaVoti DESC, A.Nome ASC";
+        $query = "SELECT *
+                FROM Autori
+                ORDER BY Punteggio DESC";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         $result = $stmt->get_result();

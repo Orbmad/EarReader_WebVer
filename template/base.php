@@ -29,12 +29,14 @@
             </section>
             <input class="searchbar-icon search-button" type="image" src="upload/search-icon.png" alt="Submit search" />
         </section>
+        
         <section class="user-currency">
             <a href="#">
                 <img src="upload/elf-ear.png" alt="">
                 <p><?php echo getUserCurrency() ?></p>
             </a>
         </section>
+        
         <section class="nav-buttons">
             <a class="home-button" href="home.php">
                 <img src="upload/home.png" alt="home">

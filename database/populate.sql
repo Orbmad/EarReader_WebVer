@@ -96,6 +96,17 @@ UPDATE Discussioni
 SET NumeroCommenti = NumeroCommenti + 1
 WHERE Titolo IN ("Classici italiani", "Romanzi rosa consigliati", "Migliori thriller", "Autori emergenti", "Libri di avventura", "Libri di fantascienza", "Libri per rilassarsi", "Graphic novel da leggere");
 
+-- Ricalcolo numero commenti
+UPDATE Discussioni D
+SET NumeroCommenti = (
+    SELECT COUNT(*)
+    FROM Commenti C
+    WHERE C.Titolo = D.Titolo
+    AND C.Email = D.Email
+)
+WHERE D.Titolo = ?
+AND Email = ?;
+
 -- Generi --
 INSERT INTO Generi (NomeGenere)
 VALUES
@@ -180,7 +191,7 @@ VALUES
 (10, 2),
 (11, 2),
 (12, 2),
-(3, 3), -- dist
+(8, 3), -- dist
 (14, 3),
 (12, 4), -- poesia
 (14, 5), -- viol
@@ -201,6 +212,57 @@ VALUES
 (9, 12),
 (12, 12);
 
--- Capitoli -- 
-INSERT INTO 
+-- Capitoli -- per Testi con capitoli
+INSERT INTO Capitoli (CodiceTesto, Numero, PercorsoCapitolo, Titolo)
+VALUES
+(9, 1, "001_la-fattoria-degli-animali-01-4.pdf", "Capitolo 1"),
+(9, 2, "002_la-fattoria-degli-animali-05-8.pdf", "Capitolo 2"),
+(9, 3, "003_la-fattoria-degli-animali-09-11.pdf", "Capitolo 3"),
+(9, 4, "004_la-fattoria-degli-animali-12-14.pdf", "Capitolo 4"),
+(9, 5, "005_la-fattoria-degli-animali-15-19.pdf", "Capitolo 5"),
+(9, 6, "006_la-fattoria-degli-animali-20-23.pdf", "Capitolo 6"),
+(9, 7, "007_la-fattoria-degli-animali-24-28.pdf", "Capitolo 7"),
+(9, 8, "008_la-fattoria-degli-animali-29-34.pdf", "Capitolo 8"),
+(9, 9, "009_la-fattoria-degli-animali-35-39.pdf", "Capitolo 9"),
+(9, 10, "010_la-fattoria-degli-animali-40-44.pdf", "Capitolo 10"),
+(13, 1, "001_the_hound_of_the_baskervilles-1-5.pdf", "Capitolo 1"),
+(13, 2, "002_the_hound_of_the_baskervilles-13-19.pdf", "Capitolo 2"),
+(13, 3, "003_the_hound_of_the_baskervilles-20-27.pdf", "Capitolo 3"),
+(13, 4, "004_the_hound_of_the_baskervilles-28-35.pdf", "Capitolo 4"),
+(13, 5, "005_the_hound_of_the_baskervilles-36-43.pdf", "Capitolo 5"),
+(13, 6, "006_the_hound_of_the_baskervilles-44-52.pdf", "Capitolo 6"),
+(13, 7, "007_the_hound_of_the_baskervilles-53-57.pdf", "Capitolo 7"),
+(13, 8, "008_the_hound_of_the_baskervilles-58-69.pdf", "Capitolo 8"),
+(13, 9, "009_the_hound_of_the_baskervilles-6-12.pdf", "Capitolo 9"),
+(13, 10, "010_the_hound_of_the_baskervilles-70-76.pdf", "Capitolo 10"),
+(13, 11, "011_the_hound_of_the_baskervilles-77-85.pdf", "Capitolo 11"),
+(13, 12, "012_the_hound_of_the_baskervilles-86-95.pdf", "Capitolo 12"),
+(13, 13, "013_the_hound_of_the_baskervilles-96-102.pdf", "Capitolo 13"),
+(13, 14, "014_the_hound_of_the_baskervilles-103-110.pdf", "Capitolo 14"),
+(13, 15, "015_the_hound_of_the_baskervilles-111-117.pdf", "Capitolo 15"),
+(14, 1, "001_The_War_of_The_Worlds-1-4.pdf", "Capitolo 1"),
+(14, 2, "002_The_War_of_The_Worlds-5-7.pdf", "Capitolo 2"),
+(14, 3, "003_The_War_of_The_Worlds-8-12.pdf", "Capitolo 3"),
+(14, 4, "004_The_War_of_The_Worlds-13-15.pdf", "Capitolo 4"),
+(14, 5, "005_The_War_of_The_Worlds-16-17.pdf", "Capitolo 5"),
+(14, 6, "006_The_War_of_The_Worlds-18-20.pdf", "Capitolo 6"),
+(14, 7, "007_The_War_of_The_Worlds-21-22.pdf", "Capitolo 7"),
+(14, 8, "008_The_War_of_The_Worlds-23-26.pdf", "Capitolo 8"),
+(14, 9, "009_The_War_of_The_Worlds-27-30.pdf", "Capitolo 9"),
+(14, 10, "010_The_War_of_The_Worlds-31-34.pdf", "Capitolo 10"),
+(14, 11, "011_The_War_of_The_Worlds-35-41.pdf", "Capitolo 11"),
+(14, 12, "012_The_War_of_The_Worlds-42-45.pdf", "Capitolo 12"),
+(14, 13, "013_The_War_of_The_Worlds-46-52.pdf", "Capitolo 13"),
+(14, 14, "015_The_War_of_The_Worlds-53-57.pdf", "Capitolo 15"),
+(14, 15, "016_The_War_of_The_Worlds-58-70.pdf", "Capitolo 16"),
+(14, 16, "017_The_War_of_The_Worlds-71-75.pdf", "Capitolo 17"),
+(14, 17, "018_The_War_of_The_Worlds-76-81.pdf", "Capitolo 18"),
+(14, 18, "020_The_War_of_The_Worlds-82-85.pdf", "Capitolo 20"),
+(14, 19, "021_The_War_of_The_Worlds-86-88.pdf", "Capitolo 21"),
+(14, 20, "022_The_War_of_The_Worlds-89-90.pdf", "Capitolo 22"),
+(14, 21, "023_The_War_of_The_Worlds-91-93.pdf", "Capitolo 23"),
+(14, 22, "024_The_War_of_The_Worlds-94-103.pdf", "Capitolo 24"),
+(14, 23, "025_The_War_of_The_Worlds-104-108.pdf", "Capitolo 25");
+
+
 
