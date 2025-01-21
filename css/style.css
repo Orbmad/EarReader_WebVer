@@ -249,9 +249,83 @@ main.home section {
   box-shadow: 3px 3px 1px #524629;
   background-color: #F6F2EF;
   width: 86%;
+  height: 220px;
   margin: 10px;
+  justify-content: center;
 }
 main.home section h1 {
   margin: 10px;
   color: #524629;
+}
+main.home section ul {
+  height: auto;
+  overflow-y: auto;
+  list-style: none;
+  margin: 10px;
+  padding-inline-start: 0px;
+  padding: 0px 15px;
+}
+main.home section li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  box-shadow: 3px 3px 1px #524629;
+  justify-content: space-between;
+  border: 1px solid #98B895;
+  border-radius: 20px;
+  padding: 0px 20px;
+  margin: 4px 0px;
+  height: 44px;
+  font-size: large;
+}
+main.home section li p {
+  width: 30%;
+}
+main.home section li p.comments {
+  text-align: right;
+  padding-right: 25px;
+}
+main.home section li a {
+  width: 30%;
+  justify-content: left;
+  color: #524629;
+  font-weight: bold;
+  cursor: pointer;
+}
+main.topic {
+  padding: 30px;
+}
+main.topic section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: left;
+  box-shadow: 3px 3px 1px #524629;
+  background-color: #F6F2EF;
+}
+main.topic section section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  box-shadow: none;
+}
+main.topic section section ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+}
+main.topic section section ul li section {
+  box-shadow: none;
+}
+main.topic section section ul li section button {
+  background: none;
+  border: none;
+}
+main.topic section section ul li section button img {
+  width: 15px;
 }/*# sourceMappingURL=style.css.map */

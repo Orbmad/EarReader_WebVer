@@ -272,11 +272,78 @@ main {
             @include boxShadow();
             background-color: $plain;
             width: 86%;
+            height: 220px;
             margin: 10px;
+            justify-content: center;
+
             h1 {
                 margin: 10px;
                 color: $darkBrown;
 
+            }
+            ul {
+                height: auto;
+                overflow-y: auto;
+                list-style: none;
+                margin: 10px;
+                padding-inline-start: 0px;
+                padding: 0px 15px;
+            }
+            li {
+                @include flexCenter(row);
+                @include boxShadow();
+                justify-content: space-between;
+                border: 1px solid $mainGreen;
+                border-radius: 20px;
+                padding: 0px 20px;
+                margin: 4px 0px;
+                height: 44px;
+                font-size: large;
+                p {
+                    width: 30%;
+                    &.comments {
+                        text-align: right;
+                        padding-right: 25px;
+                    }
+                }
+                a {
+                    width: 30%;
+                    justify-content: left;
+                    color: $darkBrown;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+            }
+        }
+
+    }
+
+    &.topic {
+        padding: 30px;
+        section {
+            @include flexCenter(column);
+            justify-content: left;
+            @include boxShadow();
+            background-color: $plain;
+            section {
+                @include flexCenter(row);
+                box-shadow: none;
+                ul {
+                    @include flexCenter(column);
+                    list-style: none;
+                    li {
+                        section {
+                            box-shadow: none;
+                            button {
+                                background: none;
+                                border: none;
+                                img {
+                                    width: 15px;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

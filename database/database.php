@@ -24,6 +24,14 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getUserName($email) {
+        $stmt = $this->db->prepare("SELECT Nickname FROM Utenti WHERE Email = ?");
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0];
+    }
+
     /**
      * Creates a new user in the database. [OP01]
      */
@@ -231,7 +239,7 @@ class Database
     /**
      * Returns a topic
      */
-    private function getTopic($authorEmail, $title) {
+    public function getTopic($authorEmail, $title) {
         $query = "SELECT * FROM Discussioni
                 WHERE Email = ?
                 AND Titolo = ?";
@@ -272,6 +280,47 @@ class Database
         } catch (PDOException) {
             return false;
         }
+    }
+
+    private function getLikesOfComment($commentEmail, $title, $code) {
+        $query = "SELECT MiPiace FROM Valutazioni
+                WHERE Email = ?
+                AND Titolo = ?
+                AND Codice = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ssi', $commentEmail, $title, $code);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all();
+    }
+
+    public function getCommentsOfTopic($authorEmail, $title) {
+        $query = "SELECT * FROM Commenti
+                WHERE Email = ?
+                AND Titolo = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ss', $authorEmail, $title);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $comments = $result->fetch_all(MYSQLI_ASSOC);
+
+        foreach ($comments as &$comment) {
+            $res = $this->getLikesOfComment($comment["Email"], $comment["Titolo"], $comment["Codice"]);
+            $likes = 0;
+            $dislikes = 0;
+            foreach ($res as $r) {
+                if ($r == true) {
+                    $likes++;
+                } else {
+                    $dislikes++;
+                }
+            }
+            $comment["likes"] = $likes;
+            $comment["dislikes"] = $dislikes;
+        }
+
+        return $comments;
     }
 
     /**
@@ -458,12 +507,12 @@ class Database
      * Returns suggested texts. [OP11]
      */
     public function suggestedTexts($email) {
-        $query = "SELECT DISTINCT *
+        $query = "SELECT *
                 FROM Testi T
                 JOIN Contiene C ON T.Codice = C.CodiceTesto
                 JOIN Tag TA ON TA.Codice = C.CodiceTag
                 WHERE TA.Codice IN (
-                    SELECT DISTINCT TA1.Codice
+                    SELECT TA1.Codice
                     FROM Tag TA1
                     JOIN Contiene C1 ON C1.CodiceTag = TA1.Codice
                     JOIN Testi T2 ON T2.Codice = C1.CodiceTesto
@@ -473,9 +522,9 @@ class Database
                         JOIN Recensioni R ON T3.Codice = R.CodiceTesto
                         WHERE R.Email = ?
                         ORDER BY R.Voto DESC
-                        LIMIT 5
                     )
-                )";
+                )
+                LIMIT 10";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
         $stmt->execute();

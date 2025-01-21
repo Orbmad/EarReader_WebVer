@@ -1,7 +1,7 @@
 -- Utenti --
 INSERT INTO Utenti (Email, Nickname, Password_hash)
 VALUES
-("toad@hotmail.com", "SadToad", SHA2("toad", 256))
+("toad@hotmail.com", "SadToad", SHA2("toad", 256)),
 ("yoshi@hotmail.com", "YOSHIIIID", SHA2("yoshi", 256)),
 ("mario@libero.it", "Mariooo", SHA2("mario", 256)),
 ("peach@libero.it", "PinkyPeach", SHA2("peach", 256)),
@@ -81,7 +81,7 @@ VALUES
 ("luigi@gmail.com", "Autori emergenti", "Scopri Sally Rooney, sta avendo molto successo.", "toad@hotmail.com"),
 ("yoshi@hotmail.com", "Poesia moderna", "Leggi Rupi Kaur, molto emozionante.", "daisy@gmail.com"),
 ("yoshi@hotmail.com", "Poesia moderna", "Io odiooo la poesia", "peach@libero.it"),
-("yoshi@hotmail.com", "Poesia moderna", "Sono io il poeta migliore hahahahaha", "toad@hotmail.com")
+("yoshi@hotmail.com", "Poesia moderna", "Sono io il poeta migliore hahahahaha", "toad@hotmail.com"),
 ("mario@libero.it", "Classici italiani", "La Divina Commedia è imprescindibile!", "peach@libero.it");
 
 UPDATE Discussioni
