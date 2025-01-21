@@ -217,6 +217,48 @@ class Database
     }
 
     /**
+     * Returns all the topics.
+     */
+    public function getTopics() {
+        $query = "SELECT * FROM Discussioni";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    /**
+     * Returns a topic
+     */
+    private function getTopic($authorEmail, $title) {
+        $query = "SELECT * FROM Discussioni
+                WHERE Email = ?
+                AND Titolo = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ss', $authorEmail, $title);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    private function incrementNumberOfComments($authorEmail, $title) {
+        $query = "UPDATE Discussioni
+                SET NumeroCommenti = NumeroCommenti + 1
+                WHERE Email = ?
+                AND Titolo = ?";
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ss', $authorEmail, $title);
+            $stmt->execute();
+            return true;
+        } catch (PDOException) {
+            return false;
+        }
+    }
+
+    /**
      * Adds a comment to a topic. [OP05]
      */
     public function addCommentToTopic($email, $text, $authorEmail, $title) {
@@ -225,6 +267,23 @@ class Database
         try {
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('ssss', $authorEmail, $title, $text, $email);
+            $stmt->execute();
+            return $this->incrementNumberOfComments($authorEmail, $title);
+        } catch (PDOException) {
+            return false;
+        }
+    }
+
+    /**
+     * Adds like or dislike to a comment
+     */
+    public function addLike($email, $authorEmail, $title, $code, $like) {
+        $query = "INSERT INTO Valutazioni (EmailUtente, Email, Titolo, Codice, MiPiace)
+                VALUES (?, ?, ?, ?, ?)";
+        $like = $like ? 1 : 0;
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sssii', $email, $authorEmail, $title, $code, $like);
             $stmt->execute();
             return true;
         } catch (PDOException) {
@@ -399,7 +458,7 @@ class Database
      * Returns suggested texts. [OP11]
      */
     public function suggestedTexts($email) {
-        $query = "SELECT *
+        $query = "SELECT DISTINCT *
                 FROM Testi T
                 JOIN Contiene C ON T.Codice = C.CodiceTesto
                 JOIN Tag TA ON TA.Codice = C.CodiceTag

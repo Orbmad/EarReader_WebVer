@@ -236,4 +236,22 @@ main.login section form ul li, main.signup section form ul li {
 }
 main.login section form ul li:last-child, main.signup section form ul li:last-child {
   margin-top: 15px;
+}
+main.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+main.home section {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 3px 3px 1px #524629;
+  background-color: #F6F2EF;
+  width: 86%;
+  margin: 10px;
+}
+main.home section h1 {
+  margin: 10px;
+  color: #524629;
 }/*# sourceMappingURL=style.css.map */
