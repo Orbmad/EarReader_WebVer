@@ -302,8 +302,38 @@ main.topic section {
   align-items: center;
   flex-direction: column;
   justify-content: left;
+  text-align: left;
   box-shadow: 3px 3px 1px #524629;
   background-color: #F6F2EF;
+  width: 68%;
+  padding: 20px;
+}
+main.topic section h1 {
+  font-size: 28px;
+  color: #524629;
+  margin: 16px 0px;
+}
+main.topic section section {
+  width: 90%;
+  text-align: center;
+}
+main.topic section section h2 {
+  font-size: 20px;
+  color: #524629;
+  margin: 16px 0px;
+  width: 46%;
+}
+main.topic section section h3 {
+  font-size: 20px;
+  color: #524629;
+  margin: 16px 0px;
+  width: 46%;
+}
+main.topic section p.text {
+  font-size: 18px;
+  text-align: left;
+  min-width: 400px;
+  padding: 0px 5%;
 }
 main.topic section section {
   display: flex;
@@ -318,6 +348,16 @@ main.topic section section ul {
   align-items: center;
   flex-direction: column;
   list-style: none;
+  width: 100%;
+  padding-inline-start: 0px;
+  margin: 0px;
+}
+main.topic section section ul li {
+  border: 1px solid #98B895;
+  border-radius: 24px;
+  width: 96%;
+  padding: 6px 26px;
+  margin: 4px;
 }
 main.topic section section ul li section {
   box-shadow: none;
@@ -328,4 +368,79 @@ main.topic section section ul li section button {
 }
 main.topic section section ul li section button img {
   width: 15px;
+}
+main.topic section section ul li h4 {
+  margin: 10px 0px;
+  text-align: left;
+}
+main.topic section section ul li p {
+  padding-left: 10px;
+  margin: 8px 0px;
+  text-align: left;
+}
+main.topic section section.likes {
+  justify-self: end;
+  width: -moz-fit-content;
+  width: fit-content;
+  justify-content: left;
+  padding: 2px 10px;
+}
+main.topic section section.likes button {
+  width: 30px;
+  padding: 0px;
+}
+main.topic section section.likes p {
+  padding: 4px;
+  margin: 0px;
+}
+main.topic section section.new-comment {
+  padding: 0px;
+}
+main.topic section section.new-comment.hidden {
+  display: none;
+}
+main.topic section section.new-comment button {
+  font-size: 16px;
+}
+main.topic section section.edit {
+  border: 1px solid #524629;
+  border-radius: 30px;
+}
+main.topic section section.edit form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+main.topic section section.edit form label {
+  color: #524629;
+  font-weight: bold;
+  margin: 3px;
+  font-size: 18px;
+}
+main.topic section section.edit form input {
+  width: 78%;
+  height: 120px;
+}
+main.topic section section.edit form input[type=submit] {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-top: 12px;
+  margin-right: 30px;
+  margin-left: auto;
+}
+main.topic section section.edit form input[type=text] {
+  color: #000000;
+  font-size: 18px;
+  border-radius: 26px;
+}
+main.topic section section.edit.hidden {
+  display: none;
+}
+main.topic section.subtitle {
+  justify-content: space-around;
+  padding: 0px;
 }/*# sourceMappingURL=style.css.map */
