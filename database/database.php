@@ -185,6 +185,22 @@ class Database
     }
 
     /**
+     * Returns all the chapters of a text.
+     */
+    public function getChaptersOfText($textCode) {
+        $query = "SELECT C.CodiceTesto C.Numero C.PercorsoCapitolo C.Titolo
+                FROM Capitoli C
+                JOIN Testi T ON T.Codice = C.CodiceTesto
+                WHERE T.Codice";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $textCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    /**
      * Returns all the reviews of a text
      */
     public function getReviewsOfText($textCode) {
