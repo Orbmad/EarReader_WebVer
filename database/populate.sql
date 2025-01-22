@@ -106,6 +106,7 @@ SET NumeroCommenti = (
 )
 WHERE D.Titolo = ?
 AND Email = ?;
+-- ----------------------------
 
 -- Generi --
 INSERT INTO Generi (NomeGenere)

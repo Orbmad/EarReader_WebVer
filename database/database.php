@@ -171,6 +171,32 @@ class Database
         }
     }
 
+    /**
+     * Returns a text.
+     */
+    public function getText($textCode) {
+        $query = "SELECT * FROM Testi WHERE Codice = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $textCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC)[0];
+    }
+
+    /**
+     * Returns all the reviews of a text
+     */
+    public function getReviewsOfText($textCode) {
+        $query = "SELECT * FROM Recensioni WHERE COdiceTesto = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $textCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     private function countTextChapters($textCode) {
         $query = "SELECT COUNT(*) AS CapitoliTotali
                 FROM Capitoli C
@@ -193,6 +219,40 @@ class Database
         $result = $stmt->get_result();
 
         return $result->fetch_assoc()['CapitoliAcquistati'];
+    }
+
+    /**
+     * Returns all the tags of a text.
+     */
+    public function getTagsOfText($textCode) {
+        $query = "SELECT Nome
+                FROM Tag A
+                JOIN Contiene C ON A.Codice = C.CodiceTag
+                JOIN Testi T ON C.CodiceTesto = T.Codice
+                WHERE T.Codice = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $textCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    /**
+     * Returns the authors of a text.
+     */
+    public function getAuthorsOfText($textCode) {
+        $query = "SELECT A.Nome A.Alias
+                FROM Autori A
+                JOIN Scritture S ON A.CodiceAutore = S.CodiceAutore
+                JOIN Testi T ON T.Codice = S.CodiceTesto
+                WHERE T.Codice = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $textCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**

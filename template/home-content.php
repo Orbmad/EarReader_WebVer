@@ -14,7 +14,7 @@
             <?php foreach ($params["suggested"] as $text): ?>
                 <?php if ($count++ > $limit) break; ?>
                 <li>
-                    <a href="#"><?php echo $text["Titolo"]; ?></a>
+                    <a href="text.php?title=<?php echo $text["Titolo"]; ?>&code=<?php echo $text["Codice"]; ?>"><?php echo $text["Titolo"]; ?></a>
                     <p><?php if ($text["Singolo"]) {echo "Costo: ".$text["Costo"];} else {echo "Costo capitoli: ".$text["Costo"];} ?></p>
                     <p>Voto: <?php echo sprintf("%1.1f", $text["Voto"]); ?>/5</p>
                 </li>
@@ -34,7 +34,7 @@
             <?php foreach ($params["bests"] as $text): ?>
                 <?php if ($count++ > $limit) break; ?>
                 <li>
-                    <a href="#"><?php echo $text["Titolo"]; ?></a>
+                    <a href="text.php?title=<?php echo $text["Titolo"]; ?>&code=<?php echo $text["Codice"]; ?>"><?php echo $text["Titolo"]; ?></a>
                     <p><?php if ($text["Singolo"]) {echo "Costo: ". $text["Costo"];} else {echo "Costo capitoli: ".$text["Costo"];} ?></p>
                     <p>Voto: <?php echo sprintf("%1.1f", $text["Voto"]); ?>/5</p>
                 </li>
