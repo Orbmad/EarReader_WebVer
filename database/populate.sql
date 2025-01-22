@@ -274,3 +274,13 @@ SET T.Voto = (
 )
 -- --------------------
 
+-- Ricalcola Punteggio Autori
+UPDATE Autori A
+SET Punteggio = (
+    SELECT AVG(Voto)
+    FROM Testi T
+    JOIN Scritture S ON T.Codice = S.CodiceTesto
+    JOIN Autori A1 ON A1.CodiceAutore = S.CodiceAutore
+    WHERE A.CodiceAutore = A1.CodiceAutore
+)
+-- --------------------------

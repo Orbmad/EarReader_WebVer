@@ -317,15 +317,18 @@ main.text-page section.main-section {
   flex-direction: column;
   box-shadow: 3px 3px 1px #524629;
   background-color: #F6F2EF;
+  width: 100%;
 }
 main.text-page section.main-section section.header {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: space-between;
+  width: calc(100% - 80px);
   height: 100xp;
+  padding: 0px 40px;
+  margin-bottom: 8px;
 }
 main.text-page section.main-section section.header h1 {
   font-size: 48px;
@@ -354,6 +357,9 @@ main.text-page section.main-section ul.authors-list {
 main.text-page section.main-section ul.authors-list > li:first-of-type {
   margin: 10px 20px;
 }
+main.text-page section.main-section ul.authors-list li {
+  margin-right: 16px;
+}
 main.text-page section.main-section p.genre {
   margin: 4px;
 }
@@ -370,6 +376,9 @@ main.text-page section.main-section section.chapters h1 {
 }
 main.text-page section.main-section section.chapters ul {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 80%;
   padding-inline-start: 0px;
   margin: 8px 0px;
@@ -387,27 +396,42 @@ main.text-page section.main-section section.chapters ul li {
   padding: 6px 20px;
   border: 1px solid #98B895;
   border-radius: 30px;
+  margin-bottom: 2px;
 }
 main.text-page section.main-section section.chapters ul li p {
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
-  min-width: 40px;
+  min-width: 26px;
   margin: 8px 8px;
-  overflow-x: hidden;
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
+}
+main.text-page section.main-section section.chapters ul li p:nth-of-type(3) {
+  font-size: 16px;
+  color: #AC8E58;
 }
 main.text-page section.main-section section.chapters ul li a {
   background-color: #524629;
   color: #F6F2EF;
   text-decoration: none;
-  padding: 4px 8px;
-  border-radius: 10px;
+  padding: 4px 10px;
+  border-radius: 14px;
+  border: 1px solid #524629;
+}
+main.text-page section.main-section section.chapters ul li a.read {
+  color: #524629;
+  background-color: #F6F2EF;
 }
 main.text-page section.main-section section.chapters ul li a:hover {
   scale: 1.1;
 }
+main.text-page section.main-section section.chapters ul li a.hidden {
+  display: none;
+}
 main.text-page section.main-section section.reviews {
   padding: 20px 36px;
+  min-width: 80%;
 }
 main.text-page section.main-section section.reviews h1 {
   font-size: 32px;
@@ -449,6 +473,7 @@ main.text-page section.main-section section.reviews section.new-review {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  min-width: 60%;
 }
 main.text-page section.main-section section.reviews section.new-review button {
   font-size: 16px;

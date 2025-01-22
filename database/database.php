@@ -62,8 +62,10 @@ class Database
                 T.NomeGenere
                 FROM Testi T
                 JOIN AcquistiCap A ON A.CodiceTesto = T.Codice
-                JOIN Utenti U ON U.Email = A.Email";
+                JOIN Utenti U ON U.Email = A.Email
+                WHERE U.Email = ?";
         $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -114,6 +116,22 @@ class Database
         } catch (PDOException) {
             return false;
         }
+    }
+
+    public function isChapterPossesed($email, $textCode, $chapterNumber) {
+        $query = "SELECT U.Email
+                FROM Utenti U
+                JOIN AcquistiCap A ON A.Email = U.Email
+                JOIN Capitoli C ON C.codiceTesto = A.CodiceTesto AND C.Numero = A.Numero
+                WHERE U.Email = ?
+                AND C.CodiceTesto = ?
+                AND C.Numero = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sii', $email, $textCode, $chapterNumber);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return count($result->fetch_all()) > 0;
     }
 
     private function removeCurrencyIfPossible($email, $currency, $userCurrency) {

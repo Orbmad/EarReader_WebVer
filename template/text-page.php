@@ -23,10 +23,16 @@
             <ul>
                 <?php foreach ($params["chapters"] as $chapter): ?>
                     <li>
-                        <p><?php echo $chapter["Numero"]; ?></p>
+                        <p>#<?php echo $chapter["Numero"]; ?></p>
                         <p><?php echo $chapter["Titolo"]; ?></p>
+                        <p>Costo: <?php echo $params["text"]["Costo"]; ?></p>
                         <!--Acquista capitolo e leggi se acquistato-->
-                        <a href="#">Ottieni</a>
+                        <a class="buy <?php if ($db->isChapterPossesed($_SESSION["user"]["Email"], $params["text"]["Codice"], $chapter["Numero"])) {
+                                            echo "hidden";
+                                        } ?>" href=<?php echo "utils/api-buyChapter.php?code=" . $params["text"]["Codice"] . "&number=" . $chapter["Numero"] . "&cost=" . $params["text"]["Costo"] . "&title=" . $params["text"]["Titolo"]; ?>>Ottieni</a>
+                        <a class="read <?php if (!$db->isChapterPossesed($_SESSION["user"]["Email"], $params["text"]["Codice"], $chapter["Numero"])) {
+                                            echo "hidden";
+                                        } ?>" href="utils.api-readChapter.php">Leggi</a>
                     </li>
                 <?php endforeach; ?>
             </ul>

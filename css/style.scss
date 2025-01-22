@@ -355,12 +355,15 @@ main {
             @include flexCenter(column);
             @include boxShadow();
             background-color: $plain;
+            width: 100%;
 
             section.header {
                 @include flexCenter(row);
-                justify-content: space-around;
-                width: 100%;
+                justify-content: space-between;
+                width: calc(100% - 80px);
                 height: 100xp;
+                padding: 0px 40px;
+                margin-bottom: 8px;
 
                 h1 {
                     font-size: 48px;
@@ -390,6 +393,9 @@ main {
                 >li:first-of-type {
                     margin: 10px 20px;
                 }
+                li {
+                    margin-right: 16px;
+                }
             }
 
             p.genre {
@@ -409,7 +415,7 @@ main {
                 }
 
                 ul {
-                    display: flex;
+                    @include flexCenter(column);
                     width: 80%;
                     padding-inline-start: 0px;
                     margin: 8px 0px;
@@ -424,26 +430,43 @@ main {
                         padding: 6px 20px;
                         border: 1px solid $mainGreen;
                         border-radius: 30px;
+                        margin-bottom: 2px;
 
                         p {
-                            font-size: 20px;
+                            font-size: 18px;
                             text-align: center;
-                            min-width: 40px;
+                            min-width: 26px;
                             margin: 8px 8px;
 
-                            overflow-x: hidden;
+                            white-space: nowrap;
+                            overflow: hidden;
                             text-overflow: ellipsis;
+
+                            &:nth-of-type(3) {
+                                font-size: 16px;
+                                color: $mainBrown;
+                            }
                         }
 
                         a {
                             background-color: $darkBrown;
                             color: $plain;
                             text-decoration: none;
-                            padding: 4px 8px;
-                            border-radius: 10px;
+                            padding: 4px 10px;
+                            border-radius: 14px;
+                            border: 1px solid $darkBrown;
+
+                            &.read {
+                                color: $darkBrown;
+                                background-color: $plain;
+                            }
 
                             &:hover {
                                 scale: 1.1;
+                            }
+
+                            &.hidden {
+                                display: none;
                             }
                         }
                     }
@@ -452,6 +475,7 @@ main {
 
             section.reviews {
                 padding: 20px 36px;
+                min-width: 80%;
 
                 h1 {
                     font-size: 32px;
@@ -498,6 +522,7 @@ main {
 
                 section.new-review {
                     @include flexCenter(column);
+                    min-width: 60%;
 
                     button {
                         font-size: 16px;
