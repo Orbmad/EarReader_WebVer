@@ -1,7 +1,7 @@
 <main class="text-page">
     <section>
         <section>
-            <h1><?php echo $params["title"]?></h1>
+            <h1><?php echo $params["text"]["Titolo"]; ?></h1>
             <p>Voto: <?php echo $params["text"]["Voto"]; ?></p>
         </section>
 
@@ -49,8 +49,9 @@
         </section>
 
         <section class="tags">
+            <h2>Tag:</h2>
             <p><?php foreach($params["tags"] as $tag) {echo $tag["Nome"].", "; } ?></p>
         </section>
-        
+
     </section>
 </main>

@@ -188,10 +188,10 @@ class Database
      * Returns all the chapters of a text.
      */
     public function getChaptersOfText($textCode) {
-        $query = "SELECT C.CodiceTesto C.Numero C.PercorsoCapitolo C.Titolo
+        $query = "SELECT C.CodiceTesto, C.Numero, C.PercorsoCapitolo, C.Titolo
                 FROM Capitoli C
                 JOIN Testi T ON T.Codice = C.CodiceTesto
-                WHERE T.Codice";
+                WHERE T.Codice = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $textCode);
         $stmt->execute();
@@ -258,7 +258,7 @@ class Database
      * Returns the authors of a text.
      */
     public function getAuthorsOfText($textCode) {
-        $query = "SELECT A.Nome A.Alias
+        $query = "SELECT A.Nome, A.Alias
                 FROM Autori A
                 JOIN Scritture S ON A.CodiceAutore = S.CodiceAutore
                 JOIN Testi T ON T.Codice = S.CodiceTesto
