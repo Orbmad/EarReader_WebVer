@@ -265,5 +265,12 @@ VALUES
 (14, 22, "024_The_War_of_The_Worlds-94-103.pdf", "Capitolo 24"),
 (14, 23, "025_The_War_of_The_Worlds-104-108.pdf", "Capitolo 25");
 
-
+-- Ricalcola voti Testi
+UPDATE Testi T
+SET T.Voto = (
+    SELECT AVG(R.Voto)
+    FROM Recensioni R
+    WHERE R.CodiceTesto = T.Codice
+)
+-- --------------------
 

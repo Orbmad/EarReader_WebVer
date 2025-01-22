@@ -1,23 +1,23 @@
 <main class="text-page">
-    <section>
-        <section>
+    <section class="main-section">
+        <section class="header">
             <h1><?php echo $params["text"]["Titolo"]; ?></h1>
-            <p>Voto: <?php echo $params["text"]["Voto"]; ?></p>
+            <p>Voto: <?php echo $params["text"]["Voto"]; ?>/5</p>
         </section>
 
-        <p>Autore/i: 
-            <ul>
-                <?php foreach($params["authors"] as $author): ?>
-                    <li>
-                        <?php echo $author["Nome"]." [".$author["Alias"]."]"; ?>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </p>
+        <ul class="authors-list"><li>Autore/i:</li>
+            <?php foreach($params["authors"] as $author): ?>
+                <li>
+                    <?php echo $author["Nome"]; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        
 
-        <p>Genere: <?php echo $params["text"]["NomeGenere"]; ?></p>
+        <p class="genre">Genere: <?php echo $params["text"]["NomeGenere"]; ?></p>
 
         <section class="chapters">
+            <h1>Capitoli:</h1>
             <ul>
                 <?php foreach($params["chapters"] as $chapter): ?>
                     <li>
@@ -35,17 +35,20 @@
             <ul>
                 <?php foreach($params["reviews"] as $review): ?>
                     <li>
-                        <h2><?php echo $db->getUserName($review["Email"]); ?></h2>
-                        <p>
-                            <h3><?php echo $review["Titolo"]; ?></h3>
-                            <h4>Voto: <?php echo $review["Voto"]; ?>/5</h4>
-                        </p>
+                        <h2><?php echo $db->getUserName($review["Email"])["Nickname"]; ?></h2>
+                        
+                        <h3><?php echo $review["Titolo"]; ?></h3>
+                        <h4>Voto: <?php echo $review["Voto"]; ?>/5</h4>
+                        
                         <p class="review-content">
                             <?php echo $review["Stringa"]; ?>
                         </p>
                     </li>
                 <?php endforeach; ?>
             </ul>
+            <section class="new-review">
+                <!--Inserisci button recensione se l'utente può scriverla-->
+            </section>
         </section>
 
         <section class="tags">

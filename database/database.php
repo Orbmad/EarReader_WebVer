@@ -576,7 +576,7 @@ class Database
      * Returns suggested texts. [OP11]
      */
     public function suggestedTexts($email) {
-        $query = "SELECT *
+        $query = "SELECT DISTINCT T.Codice, T.Titolo, T.Singolo, T.Percorso, T.Costo, T.Voto, T.NomeGenere
                 FROM Testi T
                 JOIN Contiene C ON T.Codice = C.CodiceTesto
                 JOIN Tag TA ON TA.Codice = C.CodiceTag

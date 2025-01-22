@@ -307,6 +307,153 @@ main.home section.authors ul li a {
 main.home section.authors ul li p {
   width: 46%;
 }
+main.text-page {
+  padding: 30px;
+}
+main.text-page section.main-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 3px 3px 1px #524629;
+  background-color: #F6F2EF;
+}
+main.text-page section.main-section section.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  height: 100xp;
+}
+main.text-page section.main-section section.header h1 {
+  font-size: 48px;
+  font-weight: bolder;
+  text-decoration: underline;
+  margin: 0px;
+}
+main.text-page section.main-section section.header p {
+  color: #AC8E58;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0px;
+}
+main.text-page section.main-section section.header:first-of-type {
+  margin-top: 16px;
+}
+main.text-page section.main-section ul.authors-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  list-style: none;
+  padding-inline-start: 0px;
+  margin: 6px;
+}
+main.text-page section.main-section ul.authors-list > li:first-of-type {
+  margin: 10px 20px;
+}
+main.text-page section.main-section p.genre {
+  margin: 4px;
+}
+main.text-page section.main-section section.chapters {
+  width: 100%;
+  display: contents;
+}
+main.text-page section.main-section section.chapters h1 {
+  color: #524629;
+  font-weight: bold;
+  font-size: 28px;
+  margin: 0px;
+  margin-top: 20px;
+}
+main.text-page section.main-section section.chapters ul {
+  display: flex;
+  width: 80%;
+  padding-inline-start: 0px;
+  margin: 8px 0px;
+  padding: 4px 12px;
+  align-items: center;
+  justify-content: center;
+}
+main.text-page section.main-section section.chapters ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
+  padding: 6px 20px;
+  border: 1px solid #98B895;
+  border-radius: 30px;
+}
+main.text-page section.main-section section.chapters ul li p {
+  font-size: 20px;
+  text-align: center;
+  min-width: 40px;
+  margin: 8px 8px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+main.text-page section.main-section section.chapters ul li a {
+  background-color: #524629;
+  color: #F6F2EF;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 10px;
+}
+main.text-page section.main-section section.chapters ul li a:hover {
+  scale: 1.1;
+}
+main.text-page section.main-section section.reviews {
+  padding: 20px 36px;
+}
+main.text-page section.main-section section.reviews h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #524629;
+  margin: 12px 0px;
+}
+main.text-page section.main-section section.reviews ul {
+  list-style: none;
+  padding-inline-start: 0px;
+}
+main.text-page section.main-section section.reviews ul li {
+  padding: 16px;
+  border: 1px solid #AC8E58;
+  border-radius: 30px;
+  margin-bottom: 8px;
+}
+main.text-page section.main-section section.reviews ul li h2 {
+  margin: 0px;
+}
+main.text-page section.main-section section.reviews ul li h3,
+main.text-page section.main-section section.reviews ul li h4 {
+  padding: 0px 20px;
+  margin: 8px 0px;
+}
+main.text-page section.main-section section.reviews ul li h3 {
+  font-weight: bold;
+}
+main.text-page section.main-section section.reviews ul li h4 {
+  padding-left: 36px;
+  color: #AC8E58;
+}
+main.text-page section.main-section section.reviews ul li p {
+  padding: 20px;
+  margin: 0px;
+}
+main.text-page section.main-section section.tags {
+  width: 86%;
+  padding: 0px 30px;
+}
+main.text-page section.main-section section.tags h2 {
+  margin: 0px 8px;
+}
+main.text-page section.main-section section.tags p {
+  color: #AC8E58;
+}
 main.topic {
   padding: 30px;
 }
