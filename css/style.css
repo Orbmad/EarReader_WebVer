@@ -444,6 +444,51 @@ main.text-page section.main-section section.reviews ul li p {
   padding: 20px;
   margin: 0px;
 }
+main.text-page section.main-section section.reviews section.new-review {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+main.text-page section.main-section section.reviews section.new-review button {
+  font-size: 16px;
+  padding: 8px;
+  width: 28%;
+}
+main.text-page section.main-section section.reviews section.new-review button.hidden {
+  display: none;
+}
+main.text-page section.main-section section.reviews section.new-review form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 72%;
+}
+main.text-page section.main-section section.reviews section.new-review form label {
+  font-size: 16px;
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+main.text-page section.main-section section.reviews section.new-review form textarea {
+  width: 50%;
+  height: 160px;
+  border: 1px solid #98B895;
+  border-radius: 30px;
+  padding: 14px;
+}
+main.text-page section.main-section section.reviews section.new-review form input[type=submit] {
+  font-size: 16px;
+  padding: 8px;
+  width: 28%;
+  margin-top: 12px;
+}
+main.text-page section.main-section section.reviews section.new-review form.hidden {
+  display: none;
+}
+main.text-page section.main-section section.reviews section.new-review.hidden {
+  display: none;
+}
 main.text-page section.main-section section.tags {
   width: 86%;
   padding: 0px 30px;

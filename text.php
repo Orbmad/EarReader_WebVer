@@ -12,5 +12,7 @@
     $params["tags"] = $db->getTagsOfText($_GET["code"]);
     $params["authors"] = $db->getAuthorsOfText($_GET["code"]);
 
+    $params["js"] = array("js/text-page.js");
+
     require 'template/base.php';
 ?>

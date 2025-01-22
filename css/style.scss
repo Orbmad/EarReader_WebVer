@@ -463,14 +463,17 @@ main {
                 ul {
                     list-style: none;
                     padding-inline-start: 0px;
+
                     li {
                         padding: 16px;
                         border: 1px solid $mainBrown;
                         border-radius: 30px;
                         margin-bottom: 8px;
+
                         h2 {
                             margin: 0px;
                         }
+
                         h3,
                         h4 {
                             padding: 0px 20px;
@@ -492,14 +495,64 @@ main {
                         }
                     }
                 }
+
+                section.new-review {
+                    @include flexCenter(column);
+
+                    button {
+                        font-size: 16px;
+                        padding: 8px;
+                        width: 28%;
+
+                        &.hidden {
+                            display: none;
+                        }
+                    }
+
+                    form {
+                        @include flexCenter(column);
+                        width: 72%;
+
+                        label {
+                            font-size: 16px;
+                            margin-top: 12px;
+                            margin-bottom: 4px;
+                        }
+
+                        textarea {
+                            width: 50%;
+                            height: 160px;
+                            border: 1px solid $mainGreen;
+                            border-radius: 30px;
+                            padding: 14px;
+                        }
+
+                        input[type="submit"] {
+                            font-size: 16px;
+                            padding: 8px;
+                            width: 28%;
+                            margin-top: 12px;
+                        }
+
+                        &.hidden {
+                            display: none;
+                        }
+                    }
+
+                    &.hidden {
+                        display: none;
+                    }
+                }
             }
 
             section.tags {
                 width: 86%;
                 padding: 0px 30px;
+
                 h2 {
                     margin: 0px 8px;
                 }
+
                 p {
                     color: $mainBrown;
                 }

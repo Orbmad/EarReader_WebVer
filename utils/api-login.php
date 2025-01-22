@@ -15,5 +15,4 @@
             exit;
         }
     }
-    //DA INSERIRE QUERY DI ACCESSO
 ?>

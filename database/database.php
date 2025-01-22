@@ -74,7 +74,7 @@ class Database
      * Returns chapter data.
      */
     public function getChapter($textCode, $chapterNumber) {
-        $query = "SELECT Costo FROM Testi WHERE CodiceTesto=? AND Numero=?";
+        $query = "SELECT * FROM Capitoli WHERE CodiceTesto=? AND Numero=?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ii', $textCode, $chapterNumber);
         $stmt->execute();
@@ -84,13 +84,50 @@ class Database
     }
 
     /**
+     * Returns the user currency
+     */
+    public function getUserCurrency($email) {
+        $query = "SELECT EarCoins
+                FROM Utenti
+                WHERE Email = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return (int)$result->fetch_assoc()["EarCoins"];
+    }
+
+    /**
      * Adds a chapter to the user library. [OP02]
      */
-    public function buyChapter($email, $textCode, $chapterNumber) {
+    public function buyChapter($email, $textCode, $chapterNumber, $chapterCost) {
+        if (!$this->removeCurrencyIfPossible($email, $chapterCost, $this->getUserCurrency($email))) {
+            return false;
+        }
         $query = "INSERT INTO AcquistiCap (Numero, CodiceTesto, Email) VALUES (?, ?, ?)";
         try {
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('iis', $chapterNumber, $textCode, $email);
+            $stmt->execute();
+            return true;
+        } catch (PDOException) {
+            return false;
+        }
+    }
+
+    private function removeCurrencyIfPossible($email, $currency, $userCurrency) {
+        if ($userCurrency == null) {
+            return false;
+        } else if ($currency > $userCurrency) {
+            return false;
+        }
+        $query = "UPDATE Utenti
+                SET EarCoins = EarCoins - ?
+                WHERE Email = ?";
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('is', $currency, $email);
             $stmt->execute();
             return true;
         } catch (PDOException) {
@@ -111,7 +148,7 @@ class Database
                 WHERE Codice = ?";
         try {
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('s', $textCode);
+            $stmt->bind_param('ss', $textCode, $textCode);
             $stmt->execute();
             return true;
         } catch (PDOException) {
@@ -213,30 +250,6 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    private function countTextChapters($textCode) {
-        $query = "SELECT COUNT(*) AS CapitoliTotali
-                FROM Capitoli C
-                WHERE C.CodiceTesto = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i', $textCode);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        return $result->fetch_assoc()['CapitoliTotali'];
-    }
-
-    private function countTextBoughtChapters($email, $textCode) {
-        $query = "SELECT COUNT(*) AS CapitoliAcquistati
-                FROM AcquistiCap AC
-                WHERE AC.Email = ? AND AC.CodiceTesto = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('si', $email, $textCode);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        return $result->fetch_assoc()['CapitoliAcquistati'];
-    }
-
     /**
      * Returns all the tags of a text.
      */
@@ -269,6 +282,30 @@ class Database
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    private function countTextChapters($textCode) {
+        $query = "SELECT COUNT(*) AS CapitoliTotali
+                FROM Capitoli C
+                WHERE C.CodiceTesto = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $textCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc()['CapitoliTotali'];
+    }
+
+    private function countTextBoughtChapters($email, $textCode) {
+        $query = "SELECT COUNT(*) AS CapitoliAcquistati
+                FROM AcquistiCap AC
+                WHERE AC.Email = ? AND AC.CodiceTesto = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('si', $email, $textCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc()['CapitoliAcquistati'];
     }
 
     /**
@@ -371,6 +408,9 @@ class Database
         return $result->fetch_all();
     }
 
+    /**
+     * Returns all the comments of a topic.
+     */
     public function getCommentsOfTopic($authorEmail, $title) {
         $query = "SELECT * FROM Commenti
                 WHERE Email = ?
@@ -569,8 +609,6 @@ class Database
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
-
-
 
     /**
      * Returns suggested texts. [OP11]
