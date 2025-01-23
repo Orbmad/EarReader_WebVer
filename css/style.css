@@ -741,4 +741,61 @@ main.topic section section.edit.hidden {
 main.topic section.subtitle {
   justify-content: space-around;
   padding: 0px;
+}
+main.search {
+  padding: 30px;
+}
+main.search > section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 3px 3px 1px #524629;
+  background-color: #F6F2EF;
+  padding: 20xp;
+  min-width: 96%;
+}
+main.search > section section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 96%;
+}
+main.search > section section ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-inline-start: 0px;
+  list-style: none;
+  width: 96%;
+}
+main.search > section section ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 80%;
+  height: 50px;
+  border: 1px solid #AC8E58;
+  border-radius: 30px;
+  margin-bottom: 6px;
+  padding: 0px 20px;
+}
+main.search > section section ul li a {
+  font-size: 18px;
+  font-weight: bold;
+  color: #524629;
+  width: 40%;
+}
+main.search > section section ul li > p {
+  text-align: center;
+  margin: 8px 0px;
+  width: 20%;
+}
+main.search > section section ul li p:nth-last-child(1),
+main.search > section section ul li p:nth-last-child(2) {
+  width: 10%;
 }/*# sourceMappingURL=style.css.map */

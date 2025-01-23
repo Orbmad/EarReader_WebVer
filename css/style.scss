@@ -272,7 +272,7 @@ main {
     &.library {
         padding: 30px;
 
-        >section {
+        > section {
             @include flexCenter(column);
             @include boxShadow();
             background-color: $plain;
@@ -799,6 +799,53 @@ main {
             &.subtitle {
                 justify-content: space-around;
                 padding: 0px;
+            }
+        }
+    }
+
+    &.search {
+        padding: 30px;
+        > section {
+            @include flexCenter(column);
+            @include boxShadow();
+            background-color: $plain;
+            padding: 20xp;
+            min-width: 96%;
+            section {
+                @include flexCenter(column);
+                width: 96%;
+                ul {
+                    @include flexCenter(column);
+                    padding-inline-start: 0px;
+                    list-style: none;
+                    width: 96%;
+                    li {
+                        @include flexCenter(row);
+                        justify-content: space-around;
+                        width: 80%;
+                        height: 50px;
+                        border: 1px solid $mainBrown;
+                        border-radius: 30px;
+                        margin-bottom: 6px;
+                        padding: 0px 20px;
+                        a {
+                            font-size: 18px;
+                            font-weight: bold;
+                            color: $darkBrown; 
+                            width: 40%;
+                        }
+                        > p {
+                            text-align: center;
+                            margin: 8px 0px;
+                            width: 20%;
+                        }
+                        p:nth-last-child(1),
+                        p:nth-last-child(2) {
+                            width: 10%;
+                        }
+
+                    }
+                }
             }
         }
     }

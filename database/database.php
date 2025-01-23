@@ -663,7 +663,7 @@ class Database
         $search = $search . "%";
         $query = "SELECT *
                 FROM Testi
-                WHERE Titolo LIKE ?";
+                WHERE LOWER(Titolo) LIKE LOWER(?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $search);
         $stmt->execute();
@@ -678,8 +678,8 @@ class Database
                 FROM Testi T
                 JOIN Scritture S ON T.Codice = S.CodiceTesto
                 JOIN Autori A ON A.CodiceAutore = S.CodiceAutore
-                WHERE A.Nome LIKE ?
-                OR A.Alias LIKE ?";
+                WHERE LOWER(A.Nome) LIKE LOWER(?)
+                OR LOWER(A.Alias) LIKE LOWER(?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ss', $search, $search);
         $stmt->execute();
@@ -692,7 +692,7 @@ class Database
         $search = $search . "%";
         $query = "SELECT *
                 FROM Testi T
-                WHERE T.NomeGenere LIKE ?";
+                WHERE LOWER(T.NomeGenere) LIKE LOWER(?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $search);
         $stmt->execute();
@@ -707,7 +707,21 @@ class Database
                 FROM Testi T
                 JOIN Appartenenze A ON T.Codice = A.CodiceTesto
                 JOIN Gruppi G ON G.NomeGruppo = A.NomeGruppo
-                WHERE G.NomeGruppo LIKE ?";
+                WHERE LOWER(G.NomeGruppo) LIKE LOWER(?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getAllTexts() {
+        $query = "SELECT T.Codice, T.Titolo, T.Singolo, T.Percorso, T.Costo, T.Voto, T.NomeGenere
+                FROM Testi T
+                JOIN Appartenenze A ON T.Codice = A.CodiceTesto
+                JOIN Gruppi G ON G.NomeGruppo = A.NomeGruppo
+                WHERE LOWER(G.NomeGruppo) LIKE LOWER(?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $search);
         $stmt->execute();

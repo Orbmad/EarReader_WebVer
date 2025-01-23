@@ -25,7 +25,7 @@
 
                 <input type="hidden" name="info" value="search-bar" />
 
-                <input type="text" name="search" placeholder="Cerca..." />
+                <input type="text" name="search" placeholder="Cerca testo..." value="" />
 
                 <select name="type" id="search-select" title="Ricerca">
                     <option value="title">Titolo</option>
