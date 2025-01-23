@@ -22,16 +22,22 @@
     <nav>
         <section class="search">
             <form action="utils/api-search.php" method="GET">
+
+                <input type="hidden" name="info" value="search-bar" />
+
                 <input type="text" name="search" placeholder="Cerca..." />
+
                 <select name="type" id="search-select" title="Ricerca">
                     <option value="title">Titolo</option>
                     <option value="author">Autore</option>
                     <option value="genre">Genere</option>
                     <option value="group">Gruppo</option>
                 </select>
+
                 <button type="submit">
                     <img src="upload/search-icon.png" alt="search-icon" />
                 </button>
+
             </form>
         </section>
         

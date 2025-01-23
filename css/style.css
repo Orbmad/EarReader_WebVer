@@ -267,6 +267,10 @@ main.library > section h1 {
   color: #524629;
 }
 main.library > section section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 96%;
 }
 main.library > section section ul {

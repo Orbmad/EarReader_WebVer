@@ -3,8 +3,7 @@ class Database
 {
     private $db;
 
-    public function __construct($servername, $username, $password, $dbname, $port)
-    {
+    public function __construct($servername, $username, $password, $dbname, $port) {
         $this->db = new mysqli($servername, $username, $password, $dbname, $port);
         if ($this->db->connect_error) {
             die("Connection failed: " . $this->db->connect_error);
@@ -652,6 +651,65 @@ class Database
                 LIMIT 10";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    //SEARCH QUERIES
+
+    public function searchTextsByTitleLike($search) {
+        $search = $search . "%";
+        $query = "SELECT *
+                FROM Testi
+                WHERE Titolo LIKE ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function searchTextsByAuthorLike($search) {
+        $search = $search . "%";
+        $query = "SELECT T.Codice, T.Titolo, T.Singolo, T.Percorso, T.Costo, T.Voto, T.NomeGenere
+                FROM Testi T
+                JOIN Scritture S ON T.Codice = S.CodiceTesto
+                JOIN Autori A ON A.CodiceAutore = S.CodiceAutore
+                WHERE A.Nome LIKE ?
+                OR A.Alias LIKE ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ss', $search, $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function searchTextsByGenreLike($search) {
+        $search = $search . "%";
+        $query = "SELECT *
+                FROM Testi T
+                WHERE T.NomeGenere LIKE ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function searchTextByGroupLike($search) {
+        $search = $search . "%";
+        $query = "SELECT T.Codice, T.Titolo, T.Singolo, T.Percorso, T.Costo, T.Voto, T.NomeGenere
+                FROM Testi T
+                JOIN Appartenenze A ON T.Codice = A.CodiceTesto
+                JOIN Gruppi G ON G.NomeGruppo = A.NomeGruppo
+                WHERE G.NomeGruppo LIKE ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $search);
         $stmt->execute();
         $result = $stmt->get_result();
 
