@@ -318,13 +318,13 @@ main {
     &.home {
         @include flexCenter(column);
 
-        section {
+        > section {
             display: flex;
             flex-direction: column;
             @include boxShadow();
             background-color: $plain;
             width: 86%;
-            height: 220px;
+            height: 260px;
             margin: 16px;
             justify-content: center;
 
@@ -391,6 +391,65 @@ main {
 
                         p {
                             width: 46%;
+                        }
+                    }
+                }
+            }
+
+            &.groups {
+                height: fit-content;
+                padding: 20px;
+                background-color: transparent;
+                box-shadow: none;
+                width: 60%;
+                h1 {
+                    text-align: center;
+                    font-size: 32px;
+                    font-weight: bolder;
+                }
+                ul {
+                    @include flexCenter(row);
+                    justify-content: center;
+                    overflow-y: unset;
+                    height: fit-content;
+                    li {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border: none;
+                        height: fit-content;
+                        margin: 0px 10px;
+                        width: calc(45% - 20px);
+                        box-shadow: none;
+                        a {
+                            display: block;
+                            height: 120px;
+                            width: 220px;
+                            background-color: $mainBrown;
+                            padding: 16px;
+                            border-radius: 12px;
+                            box-shadow: 3px 3px 3px $darkBrown;
+                            cursor: pointer;
+                            h2 {
+                                font-size: 26px;
+                                text-align: center;
+                                color: $plain;
+                                margin: 6px 0px;
+                                width: calc(100%);
+                            }
+                            p {
+                                margin: 0px;
+                                margin-top: 8px;
+                                padding: 12px;
+                                border-radius: 12px;
+                                width: calc(100% - 20px);
+                                height: calc(100% - 32px - 30px);
+                                background-color: $plain;
+                            }
+
+                            &:hover {
+                                scale: 1.1;
+                            }
                         }
                     }
                 }

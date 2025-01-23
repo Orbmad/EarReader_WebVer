@@ -10,6 +10,7 @@
     $params["bests"] = $db->getTextRanking();
     $params["authors"] = $db->getAuthorRanking();
     $params["topics"] = $db->getTopicRanking();
+    $params["groups"] = $db->getGroups();
     
 
     require 'template/base.php';

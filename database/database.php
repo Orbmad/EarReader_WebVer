@@ -197,7 +197,7 @@ class Database
                 WHERE CodiceAutore = ?";
         try {
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $authorCode);
+            $stmt->bind_param('ii', $authorCode, $authorCode);
             $stmt->execute();
             return true;
         } catch (PDOException) {
@@ -288,7 +288,7 @@ class Database
      * Returns the authors of a text.
      */
     public function getAuthorsOfText($textCode) {
-        $query = "SELECT A.Nome, A.Alias
+        $query = "SELECT A.*
                 FROM Autori A
                 JOIN Scritture S ON A.CodiceAutore = S.CodiceAutore
                 JOIN Testi T ON T.Codice = S.CodiceTesto

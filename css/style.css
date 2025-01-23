@@ -310,21 +310,21 @@ main.home {
   align-items: center;
   flex-direction: column;
 }
-main.home section {
+main.home > section {
   display: flex;
   flex-direction: column;
   box-shadow: 3px 3px 1px #524629;
   background-color: #F6F2EF;
   width: 86%;
-  height: 220px;
+  height: 260px;
   margin: 16px;
   justify-content: center;
 }
-main.home section h1 {
+main.home > section h1 {
   margin: 10px;
   color: #524629;
 }
-main.home section ul {
+main.home > section ul {
   height: auto;
   overflow-y: auto;
   list-style: none;
@@ -332,7 +332,7 @@ main.home section ul {
   padding-inline-start: 0px;
   padding: 0px 15px;
 }
-main.home section li {
+main.home > section li {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -346,33 +346,96 @@ main.home section li {
   height: 44px;
   font-size: large;
 }
-main.home section li p {
+main.home > section li p {
   width: 30%;
 }
-main.home section li p.comments {
+main.home > section li p.comments {
   text-align: right;
   padding-right: 25px;
 }
-main.home section li a {
+main.home > section li a {
   width: 30%;
   justify-content: left;
   color: #524629;
   font-weight: bold;
   cursor: pointer;
 }
-main.home section.suggested {
+main.home > section.suggested {
   height: auto;
   max-height: 220px;
 }
-main.home section.suggested > p {
+main.home > section.suggested > p {
   margin: 10px 20px;
 }
-main.home section.authors ul li a {
+main.home > section.authors ul li a {
   width: 46%;
   text-decoration: none;
 }
-main.home section.authors ul li p {
+main.home > section.authors ul li p {
   width: 46%;
+}
+main.home > section.groups {
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 20px;
+  background-color: transparent;
+  box-shadow: none;
+  width: 60%;
+}
+main.home > section.groups h1 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bolder;
+}
+main.home > section.groups ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  overflow-y: unset;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+main.home > section.groups ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 0px 10px;
+  width: calc(45% - 20px);
+  box-shadow: none;
+}
+main.home > section.groups ul li a {
+  display: block;
+  height: 120px;
+  width: 220px;
+  background-color: #AC8E58;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 3px 3px 3px #524629;
+  cursor: pointer;
+}
+main.home > section.groups ul li a h2 {
+  font-size: 26px;
+  text-align: center;
+  color: #F6F2EF;
+  margin: 6px 0px;
+  width: 100%;
+}
+main.home > section.groups ul li a p {
+  margin: 0px;
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  width: calc(100% - 20px);
+  height: calc(100% - 32px - 30px);
+  background-color: #F6F2EF;
+}
+main.home > section.groups ul li a:hover {
+  scale: 1.1;
 }
 main.text-page {
   padding: 30px;

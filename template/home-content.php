@@ -55,7 +55,7 @@
                 <?php if ($count++ > $limit) break; ?>
                 <li>
                     <a href="#">Nome: <?php echo $author["Nome"]; ?> [<?php echo $author["Alias"] ?>]</a>
-                    <p class="comments">Punteggio: <?php echo $author["Punteggio"]; ?>/5</p>
+                    <p class="comments">Punteggio: <?php echo sprintf("%1.2f", $author["Punteggio"]); ?>/5</p>
                 </li>
             <!--End foreach-->
             <?php endforeach; ?>
@@ -78,6 +78,20 @@
                     <p class="comments"><?php echo $topic["NumeroCommenti"]; ?> commenti</p>
                 </li>
             <!--End foreach-->
+            <?php endforeach; ?>
+        </ul>
+    </section>
+
+    <section class="groups">
+        <h1>Collezioni</h1>
+        <ul>
+            <?php foreach ($params["groups"] as $group): ?>
+                <li>
+                    <a>
+                        <h2><?php echo $group["NomeGruppo"]; ?></h2>
+                        <p><?php echo $group["Descrizione"]; ?></p>
+                    </a>
+                </li>
             <?php endforeach; ?>
         </ul>
     </section>
