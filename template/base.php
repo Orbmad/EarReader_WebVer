@@ -21,13 +21,18 @@
 
     <nav>
         <section class="search">
-            <label for="fastSearch">Ricerca rapida</label>
-            <section class="search-text">
-                <input type="text" id="fastSearch" name="fastSearch" placeholder="Cerca testi..."
-                    value="<?php if(isset($params["search"])){echo($params["search"]);}?>"
-                />
-            </section>
-            <input class="searchbar-icon search-button" type="image" src="upload/search-icon.png" alt="Submit search" />
+            <form action="utils/api-search.php" method="GET">
+                <input type="text" name="search" placeholder="Cerca..." />
+                <select name="type" id="search-select" title="Ricerca">
+                    <option value="title">Titolo</option>
+                    <option value="author">Autore</option>
+                    <option value="genre">Genere</option>
+                    <option value="group">Gruppo</option>
+                </select>
+                <button type="submit">
+                    <img src="upload/search-icon.png" alt="search-icon" />
+                </button>
+            </form>
         </section>
         
         <section class="user-currency">
@@ -41,7 +46,7 @@
             <a class="home-button" href="home.php">
                 <img src="upload/home.png" alt="home">
             </a>
-            <a class="library-button">
+            <a class="library-button" href="library.php">
                 <img src="upload/book.png" alt="libreria">
             </a>
             <a class="logout-button" href="utils/api-logout.php">

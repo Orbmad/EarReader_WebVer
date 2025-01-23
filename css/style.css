@@ -107,32 +107,45 @@ nav section.search {
   background-color: #F6F2EF;
   height: 30px;
   margin: 5px 15px;
-  padding: 5px 20px;
+  padding: 5px 10px;
   border-radius: 25px;
   justify-content: space-between;
 }
-nav section.search label {
-  display: none;
+nav section.search form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
 }
-nav section.search input[type=image] {
-  box-shadow: none;
-  border: none;
-  border-radius: 0px;
-  width: 20px;
-  padding: 5px;
-}
-nav section.search input[type=image]:hover {
-  width: 24px;
-  padding: 3px;
-}
-nav section.search input[name=fastSearch] {
-  border: none;
-  box-shadow: none;
+nav section.search form input {
   background-color: #F6F2EF;
-}
-nav section.search input[name=fastSearch]:focus {
   border: none;
+  box-shadow: none;
+  padding: 0px;
+  width: 60%;
+}
+nav section.search form input:focus-visible {
   outline: none;
+}
+nav section.search form select {
+  border: none;
+  background-color: #F6F2EF;
+  margin: 0px 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #524629;
+  cursor: pointer;
+}
+nav section.search form button {
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #F6F2EF;
+  border: none;
+  padding: 0px;
+}
+nav section.search form button img {
+  width: 18px;
 }
 nav section.user-currency {
   display: flex;
@@ -236,6 +249,56 @@ main.login section form ul li, main.signup section form ul li {
 }
 main.login section form ul li:last-child, main.signup section form ul li:last-child {
   margin-top: 15px;
+}
+main.library {
+  padding: 30px;
+}
+main.library > section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 3px 3px 1px #524629;
+  background-color: #F6F2EF;
+  padding: 20xp;
+  min-width: 96%;
+}
+main.library > section h1 {
+  color: #524629;
+}
+main.library > section section {
+  width: 96%;
+}
+main.library > section section ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-inline-start: 0px;
+  list-style: none;
+  width: 96%;
+}
+main.library > section section ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 50%;
+  border: 1px solid #AC8E58;
+  border-radius: 30px;
+  margin-bottom: 6px;
+}
+main.library > section section ul li a {
+  font-size: 18px;
+  font-weight: bold;
+  color: #524629;
+  width: 40%;
+}
+main.library > section section ul li p {
+  text-align: center;
+  margin: 8px 0px;
+  width: 24%;
 }
 main.home {
   display: flex;

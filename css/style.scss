@@ -125,35 +125,40 @@ nav {
         background-color: $plain;
         height: 30px;
         margin: 5px 15px;
-        padding: 5px 20px;
+        padding: 5px 10px;
         border-radius: 25px;
         justify-content: space-between;
 
-        label {
-            display: none;
-        }
-
-        input[type="image"] {
-            box-shadow: none;
-            border: none;
-            border-radius: 0px;
-            width: 20px;
-            padding: 5px;
-
-            &:hover {
-                width: 24px;
-                padding: 3px;
-            }
-        }
-
-        input[name="fastSearch"] {
-            border: none;
-            box-shadow: none;
-            background-color: $plain;
-
-            &:focus {
+        form {
+            @include flexCenter(row);
+            width: 100%;
+            input {
+                background-color: $plain;
                 border: none;
-                outline: none;
+                box-shadow: none;
+                padding: 0px;
+                width: 60%;
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+            select {
+                border: none;
+                background-color: $plain;
+                margin: 0px 8px;
+                font-size: 16px;
+                font-weight: bold;
+                color: $darkBrown;
+                cursor: pointer;
+            }
+            button {
+                width: fit-content;
+                background-color: $plain;
+                border: none;
+                padding: 0px;
+                img {
+                    width: 18px;
+                }
             }
         }
     }
@@ -257,6 +262,51 @@ main {
 
                         &:last-child {
                             margin-top: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.library {
+        padding: 30px;
+
+        >section {
+            @include flexCenter(column);
+            @include boxShadow();
+            background-color: $plain;
+            padding: 20xp;
+            min-width: 96%;
+
+            h1 {
+                color: $darkBrown;
+            }
+
+            section {
+                width: 96%;
+                ul {
+                    @include flexCenter(column);
+                    padding-inline-start: 0px;
+                    list-style: none;
+                    width: 96%;
+                    li {
+                        @include flexCenter(row);
+                        justify-content: space-around;
+                        width: 50%;
+                        border: 1px solid $mainBrown;
+                        border-radius: 30px;
+                        margin-bottom: 6px;
+                        a {
+                            font-size: 18px;
+                            font-weight: bold;
+                            color: $darkBrown; 
+                            width: 40%;
+                        }
+                        p {
+                            text-align: center;
+                            margin: 8px 0px;
+                            width: 24%;
                         }
                     }
                 }
@@ -393,6 +443,7 @@ main {
                 >li:first-of-type {
                     margin: 10px 20px;
                 }
+
                 li {
                     margin-right: 16px;
                 }

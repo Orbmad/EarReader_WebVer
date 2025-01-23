@@ -1,5 +1,5 @@
 - Controlla relazione, costo in pagamenti;
-- La OP02 deve contemplare la sottrazione degli EarCoins dall'utente.
 - Gestisci like e dislike ai commenti
+
 - L'aggiunta di una recensione deve eliminare quella vecchia se esiste
 - Completa buy chapter
