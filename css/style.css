@@ -152,6 +152,7 @@ nav section.user-currency {
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  height: 100%;
 }
 nav section.user-currency a {
   display: flex;
@@ -171,6 +172,9 @@ nav section.user-currency a p {
   color: #F6F2EF;
   font-size: 26px;
   font-weight: bolder;
+}
+nav section.user-currency a:hover {
+  scale: 1.06;
 }
 nav section.nav-buttons {
   display: flex;
@@ -974,4 +978,120 @@ main.search > section > section.groups li a {
 }
 main.search > section > section.groups li:hover {
   scale: 1.05;
+}
+main.shop {
+  padding: 30px;
+}
+main.shop > section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 3px 3px 2px #524629;
+  background-color: #F6F2EF;
+  width: 80%;
+  min-height: 300px;
+}
+main.shop > section h1 {
+  color: #524629;
+  font-size: 32px;
+  font-weight: bolder;
+}
+main.shop > section table {
+  display: table;
+  padding: 10px;
+  width: 50%;
+  border: none;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+main.shop > section table caption {
+  color: #98B895;
+  font-size: 22px;
+}
+main.shop > section table tr {
+  display: table-row;
+  border: none;
+}
+main.shop > section table tr td,
+main.shop > section table tr th {
+  display: table-cell;
+  text-align: center;
+  padding: 2px;
+  border: 1px solid #AC8E58;
+}
+main.shop > section table tr td:nth-child(even),
+main.shop > section table tr th:nth-child(even) {
+  border-left: none;
+}
+main.shop > section table tr td:nth-child(odd),
+main.shop > section table tr th:nth-child(odd) {
+  border-right: none;
+}
+main.shop > section table tr th {
+  padding: 4px 2px;
+  background-color: #98B895;
+  color: #F6F2EF;
+  font-weight: bolder;
+}
+main.shop > section > section.payment {
+  width: 100%;
+}
+main.shop > section > section.payment h1 {
+  color: #524629;
+  font-size: 26px;
+  text-align: center;
+}
+main.shop > section > section.payment form {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+main.shop > section > section.payment form label {
+  width: calc(48% - 20px);
+  padding: 14px 10px;
+  margin-right: 10px;
+  text-align: right;
+}
+main.shop > section > section.payment form input {
+  background-color: #FFFFFF;
+  width: 60px;
+  height: 30px;
+  border: 1px solid #AC8E58;
+  box-shadow: 2px 2px 2px #524629 inset;
+  margin-right: calc(48% - 100px);
+}
+main.shop > section > section.payment form select {
+  background-color: #FFFFFF;
+  width: 92px;
+  height: 44px;
+  margin-right: calc(48% - 100px);
+  cursor: pointer;
+  border-radius: 20px;
+}
+main.shop > section > section.payment form button {
+  width: 160px;
+  margin: 16px auto;
+}
+main.shop > section > section.payment form section.payment-data {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+main.shop > section > section.payment form section.payment-data input {
+  width: 100px;
+  margin-right: calc(48% - 140px);
+}
+main.shop > section > section.payment form section.payment-data input[name=card-number], main.shop > section > section.payment form section.payment-data input[name=card-expiry] {
+  width: 140px;
+  margin-right: calc(48% - 180px);
+}
+main.shop > section > section.payment form section.payment-data input[name=card-cvc] {
+  width: 40px;
+  margin-right: calc(48% - 80px);
+}
+main.shop > section > section.payment form section.payment-data input[name=paypal-email] {
+  width: 180px;
+  margin-right: calc(48% - 220px);
 }/*# sourceMappingURL=style.css.map */

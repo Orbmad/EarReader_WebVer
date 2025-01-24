@@ -11,17 +11,17 @@ VALUES
 -- Metodi --
 INSERT INTO Metodi (NomeMetodo)
 VALUES
-("CARTA PREPAGATA"),
+("CARTA"),
 ("PAYPAL");
 
 -- Sconti --
 INSERT INTO Sconti (QuantitaMinima, Percentuale)
 VALUES
 (100, 0),
-(1000, 0.05),
-(2500, 0.15),
-(5000, 0.25),
-(10000, 0.35);
+(1000, 5),
+(2500, 15),
+(5000, 25),
+(10000, 35);
 
 -- Discussioni --
 INSERT INTO Discussioni (Email, Titolo, Stringa, Argomento)

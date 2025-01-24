@@ -770,4 +770,25 @@ class Database
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    //SHOP QUERIES
+
+    public function getDiscountTable() {
+        $query = "SELECT * FROM Sconti";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getPaymentMethods() {
+        $query = "SELECT * FROM Metodi";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }

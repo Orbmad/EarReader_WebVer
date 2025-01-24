@@ -170,6 +170,7 @@ nav {
 
     section.user-currency {
         @include flexCenter(row);
+        height: 100%;
 
         a {
             @include flexCenter(row);
@@ -187,6 +188,10 @@ nav {
                 color: $plain;
                 font-size: 26px;
                 font-weight: bolder
+            }
+
+            &:hover {
+                scale: 1.06;
             }
         }
     }
@@ -953,6 +958,7 @@ main {
                         margin: 0px;
                         margin-top: 12px
                     }
+
                     form {
                         @include flexCenter(row);
                         width: calc(100% - 20px);
@@ -978,8 +984,10 @@ main {
                             transition: all 0.6s ease;
                             outline: none;
                             border: none;
+
                             option {
                                 background-color: $plain;
+
                                 &:hover {
                                     background-color: $darkBrown;
                                     color: $plain;
@@ -992,6 +1000,7 @@ main {
                             border: none;
                             margin-right: 16px;
                             height: auto;
+
                             &:focus {
                                 outline: 2px $darkBrown;
                                 border: 2px $darkBrown;
@@ -1009,9 +1018,11 @@ main {
                 &.authors {
                     li {
                         justify-content: space-between;
+
                         a {
                             width: 68%;
                         }
+
                         p:nth-last-child(1),
                         p:nth-last-child(2) {
                             width: 28%;
@@ -1023,12 +1034,15 @@ main {
                 &.topics {
                     li {
                         justify-content: space-between;
+
                         a {
                             width: 56%;
                         }
+
                         p:nth-last-child(1) {
                             width: 14%;
                         }
+
                         p:nth-last-child(3) {
                             width: 30%;
                             text-align: left;
@@ -1039,12 +1053,148 @@ main {
                 &.groups {
                     li {
                         width: 60%;
+
                         a {
                             width: 100%;
                         }
 
                         &:hover {
                             scale: 1.05;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.shop {
+        padding: 30px;
+
+        >section {
+            @include flexCenter(column);
+            @include boxShadow();
+            background-color: $plain;
+            width: 80%;
+            min-height: 300px;
+
+            h1 {
+                color: $darkBrown;
+                font-size: 32px;
+                font-weight: bolder;
+            }
+
+            table {
+                display: table;
+                padding: 10px;
+                width: 50%;
+                border: none;
+                border-spacing: 0px;
+                border-collapse: collapse;
+
+                caption {
+                    color: $mainGreen;
+                    font-size: 22px;
+                }
+
+                tr {
+                    display: table-row;
+                    border: none;
+
+                    td,
+                    th {
+                        display: table-cell;
+                        text-align: center;
+                        padding: 2px;
+                        border: 1px solid $mainBrown;
+
+                        &:nth-child(even) {
+                            border-left: none;
+                        }
+
+                        &:nth-child(odd) {
+                            border-right: none;
+                        }
+                    }
+
+                    th {
+                        padding: 4px 2px;
+                        background-color: $mainGreen;
+                        color: $plain;
+                        font-weight: bolder;
+                    }
+                }
+            }
+
+            >section.payment {
+                width: 100%;
+
+                h1 {
+                    color: $darkBrown;
+                    font-size: 26px;
+                    text-align: center;
+                }
+
+                form {
+                    display: flex;
+                    flex-wrap: wrap;
+                    padding: 20px;
+
+                    label {
+                        width: calc(48% - 20px);
+                        padding: 14px 10px;
+                        margin-right: 10px;
+                        text-align: right;
+                    }
+
+                    input {
+                        background-color: #FFFFFF;
+                        width: 60px;
+                        height: 30px;
+                        border: 1px solid $mainBrown;
+                        box-shadow: 2px 2px 2px $darkBrown inset;
+                        margin-right: calc(48% - 100px);
+                    }
+
+                    select {
+                        background-color: #FFFFFF;
+                        width: 92px;
+                        height: 44px;
+                        margin-right: calc(48% - 100px);
+                        cursor: pointer;
+
+                        border-radius: 20px;
+                    }
+
+                    button {
+                        width: 160px;
+                        margin: 16px auto;
+                    }
+
+                    section.payment-data {
+                        width: 100%;
+                        display: flex;
+                        flex-wrap: wrap;
+                        margin-top: 20px;
+
+                        input {
+                            width: 100px;
+                            margin-right: calc(48% - 140px);
+
+                            &[name="card-number"],
+                            &[name="card-expiry"] {
+                                width: 140px;
+                                margin-right: calc(48% - 180px);
+                            }
+
+                            &[name="card-cvc"] {
+                                width: 40px;
+                                margin-right: calc(48% - 80px);
+                            }
+
+                            &[name="paypal-email"] {
+                                width: 180px;
+                                margin-right: calc(48% - 220px);
+                            }
                         }
                     }
                 }

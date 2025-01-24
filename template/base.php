@@ -42,7 +42,7 @@
         </section>
         
         <section class="user-currency">
-            <a href="#">
+            <a href="shop.php">
                 <img src="upload/elf-ear.png" alt="">
                 <p><?php echo getUserCurrency() ?></p>
             </a>
