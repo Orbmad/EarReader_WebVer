@@ -132,16 +132,19 @@ nav {
         form {
             @include flexCenter(row);
             width: 100%;
+
             input {
                 background-color: $plain;
                 border: none;
                 box-shadow: none;
                 padding: 0px;
                 width: 60%;
+
                 &:focus-visible {
                     outline: none;
                 }
             }
+
             select {
                 border: none;
                 background-color: $plain;
@@ -151,11 +154,13 @@ nav {
                 color: $darkBrown;
                 cursor: pointer;
             }
+
             button {
                 width: fit-content;
                 background-color: $plain;
                 border: none;
                 padding: 0px;
+
                 img {
                     width: 18px;
                 }
@@ -272,7 +277,7 @@ main {
     &.library {
         padding: 30px;
 
-        > section {
+        >section {
             @include flexCenter(column);
             background-color: transparent;
             padding: 20xp;
@@ -287,11 +292,13 @@ main {
             section {
                 @include flexCenter(column);
                 width: 96%;
+
                 ul {
                     @include flexCenter(column);
                     padding-inline-start: 0px;
                     list-style: none;
                     width: 96%;
+
                     li {
                         @include flexCenter(row);
                         @include boxShadow();
@@ -302,12 +309,14 @@ main {
                         border-radius: 30px;
                         margin-bottom: 6px;
                         padding: 0px 16px;
+
                         a {
                             font-size: 18px;
                             font-weight: bold;
-                            color: $darkBrown; 
+                            color: $darkBrown;
                             width: 40%;
                         }
+
                         p {
                             text-align: center;
                             margin: 8px 0px;
@@ -322,7 +331,7 @@ main {
     &.home {
         @include flexCenter(column);
 
-        > section {
+        >section {
             display: flex;
             flex-direction: column;
             @include boxShadow();
@@ -410,16 +419,19 @@ main {
                 box-shadow: none;
                 width: 60%;
                 border: none;
+
                 h1 {
                     text-align: center;
                     font-size: 32px;
                     font-weight: bolder;
                 }
+
                 ul {
                     @include flexCenter(row);
                     justify-content: center;
                     overflow-y: unset;
                     height: fit-content;
+
                     li {
                         display: flex;
                         justify-content: center;
@@ -429,6 +441,7 @@ main {
                         margin: 0px 10px;
                         width: calc(45% - 20px);
                         box-shadow: none;
+
                         a {
                             display: block;
                             height: 120px;
@@ -439,6 +452,7 @@ main {
                             box-shadow: 3px 3px 3px $darkBrown;
                             text-decoration: none;
                             cursor: pointer;
+
                             h2 {
                                 font-size: 26px;
                                 text-align: center;
@@ -447,6 +461,7 @@ main {
                                 width: calc(100%);
                                 box-shadow: none;
                             }
+
                             p {
                                 margin: 0px;
                                 margin-top: 8px;
@@ -875,22 +890,27 @@ main {
 
     &.search {
         padding: 30px;
-        > section {
+
+        >section {
             @include flexCenter(column);
             @include boxShadow();
             background-color: $plain;
-            padding: 20xp;
+            padding: 20px;
             min-width: 96%;
-            section {
+
+            >section {
                 @include flexCenter(column);
                 width: 96%;
+
                 ul {
                     @include flexCenter(column);
                     padding-inline-start: 0px;
                     list-style: none;
                     width: 96%;
+
                     li {
                         @include flexCenter(row);
+                        box-shadow: 2px 2px 1px $darkBrown;
                         justify-content: space-around;
                         width: 80%;
                         height: 50px;
@@ -898,22 +918,134 @@ main {
                         border-radius: 30px;
                         margin-bottom: 6px;
                         padding: 0px 20px;
+
                         a {
                             font-size: 18px;
                             font-weight: bold;
-                            color: $darkBrown; 
+                            color: $darkBrown;
                             width: 40%;
                         }
-                        > p {
+
+                        >p {
                             text-align: center;
                             margin: 8px 0px;
                             width: 20%;
                         }
+
                         p:nth-last-child(1),
                         p:nth-last-child(2) {
                             width: 10%;
                         }
 
+                    }
+                }
+
+                &.filters {
+                    background-color: $mainBrown;
+                    @include flexCenter(column);
+                    @include boxShadow();
+                    border-radius: 50px;
+
+                    h1 {
+                        color: $plain;
+                        font-size: 30px;
+                        font-weight: bolder;
+                        margin: 0px;
+                        margin-top: 12px
+                    }
+                    form {
+                        @include flexCenter(row);
+                        width: calc(100% - 20px);
+                        padding: 10px;
+
+                        label {
+                            color: $plain;
+                            font-size: 16px;
+                            font-weight: bold;
+                            margin-right: 8px;
+                        }
+
+                        select {
+                            margin-right: 20px;
+                            width: fit-content;
+                            padding: 6px 12px;
+                            border-radius: 16px;
+                            background-color: $plain;
+                            color: $darkBrown;
+                            font-size: 18px;
+                            font-weight: bold;
+                            cursor: pointer;
+                            transition: all 0.6s ease;
+                            outline: none;
+                            border: none;
+                            option {
+                                background-color: $plain;
+                                &:hover {
+                                    background-color: $darkBrown;
+                                    color: $plain;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+
+                        input[type="text"] {
+                            border: none;
+                            margin-right: 16px;
+                            height: auto;
+                            &:focus {
+                                outline: 2px $darkBrown;
+                                border: 2px $darkBrown;
+                            }
+                        }
+
+                        button[type="submit"] {
+                            width: fit-content;
+                            padding: 4px 32px;
+                            margin: 0px;
+                        }
+                    }
+                }
+
+                &.authors {
+                    li {
+                        justify-content: space-between;
+                        a {
+                            width: 68%;
+                        }
+                        p:nth-last-child(1),
+                        p:nth-last-child(2) {
+                            width: 28%;
+                            text-align: left;
+                        }
+                    }
+                }
+
+                &.topics {
+                    li {
+                        justify-content: space-between;
+                        a {
+                            width: 56%;
+                        }
+                        p:nth-last-child(1) {
+                            width: 14%;
+                        }
+                        p:nth-last-child(3) {
+                            width: 30%;
+                            text-align: left;
+                        }
+                    }
+                }
+
+                &.groups {
+                    li {
+                        width: 60%;
+                        a {
+                            width: 100%;
+                        }
+
+                        &:hover {
+                            scale: 1.05;
+                        }
                     }
                 }
             }

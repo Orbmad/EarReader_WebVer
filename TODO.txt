@@ -4,3 +4,4 @@
 - L'aggiunta di una recensione deve eliminare quella vecchia se esiste
 - Completa buy chapter
 - implementa primo capitolo gratuito
+- reindirizza in shop se l'acquisto non è possibile

@@ -826,17 +826,17 @@ main.search > section {
   flex-direction: column;
   box-shadow: 3px 3px 2px #524629;
   background-color: #F6F2EF;
-  padding: 20xp;
+  padding: 20px;
   min-width: 96%;
 }
-main.search > section section {
+main.search > section > section {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 96%;
 }
-main.search > section section ul {
+main.search > section > section ul {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -845,11 +845,12 @@ main.search > section section ul {
   list-style: none;
   width: 96%;
 }
-main.search > section section ul li {
+main.search > section > section ul li {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  box-shadow: 2px 2px 1px #524629;
   justify-content: space-around;
   width: 80%;
   height: 50px;
@@ -858,18 +859,119 @@ main.search > section section ul li {
   margin-bottom: 6px;
   padding: 0px 20px;
 }
-main.search > section section ul li a {
+main.search > section > section ul li a {
   font-size: 18px;
   font-weight: bold;
   color: #524629;
   width: 40%;
 }
-main.search > section section ul li > p {
+main.search > section > section ul li > p {
   text-align: center;
   margin: 8px 0px;
   width: 20%;
 }
-main.search > section section ul li p:nth-last-child(1),
-main.search > section section ul li p:nth-last-child(2) {
+main.search > section > section ul li p:nth-last-child(1),
+main.search > section > section ul li p:nth-last-child(2) {
   width: 10%;
+}
+main.search > section > section.filters {
+  background-color: #AC8E58;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 3px 3px 2px #524629;
+  border-radius: 50px;
+}
+main.search > section > section.filters h1 {
+  color: #F6F2EF;
+  font-size: 30px;
+  font-weight: bolder;
+  margin: 0px;
+  margin-top: 12px;
+}
+main.search > section > section.filters form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: calc(100% - 20px);
+  padding: 10px;
+}
+main.search > section > section.filters form label {
+  color: #F6F2EF;
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+main.search > section > section.filters form select {
+  margin-right: 20px;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 6px 12px;
+  border-radius: 16px;
+  background-color: #F6F2EF;
+  color: #524629;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.6s ease;
+  outline: none;
+  border: none;
+}
+main.search > section > section.filters form select option {
+  background-color: #F6F2EF;
+}
+main.search > section > section.filters form select option:hover {
+  background-color: #524629;
+  color: #F6F2EF;
+  cursor: pointer;
+}
+main.search > section > section.filters form input[type=text] {
+  border: none;
+  margin-right: 16px;
+  height: auto;
+}
+main.search > section > section.filters form input[type=text]:focus {
+  outline: 2px #524629;
+  border: 2px #524629;
+}
+main.search > section > section.filters form button[type=submit] {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 4px 32px;
+  margin: 0px;
+}
+main.search > section > section.authors li {
+  justify-content: space-between;
+}
+main.search > section > section.authors li a {
+  width: 68%;
+}
+main.search > section > section.authors li p:nth-last-child(1),
+main.search > section > section.authors li p:nth-last-child(2) {
+  width: 28%;
+  text-align: left;
+}
+main.search > section > section.topics li {
+  justify-content: space-between;
+}
+main.search > section > section.topics li a {
+  width: 56%;
+}
+main.search > section > section.topics li p:nth-last-child(1) {
+  width: 14%;
+}
+main.search > section > section.topics li p:nth-last-child(3) {
+  width: 30%;
+  text-align: left;
+}
+main.search > section > section.groups li {
+  width: 60%;
+}
+main.search > section > section.groups li a {
+  width: 100%;
+}
+main.search > section > section.groups li:hover {
+  scale: 1.05;
 }/*# sourceMappingURL=style.css.map */

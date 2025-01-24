@@ -2,15 +2,18 @@
     <section>
 
         <section class="filters">
-            <form action="utils/api-search.php" method="GET">
+            <h1>Filtri</h1>
+            <form action="search.php" method="GET">
 
                 <input type="hidden" name="info" value="filters" />
 
+                <label for="search-select"> Cerca: </label>
                 <select name="type" id="search-select" title="Rierca">
                     <option value="title">Titolo</option>
-                    <option value="author">Autore</option>
-                    <option value="genre">Genere</option>
-                    <option value="group">Gruppo</option>
+                    <option value="authors">Autore</option>
+                    <option value="genres">Genere</option>
+                    <option value="topics">Discussione</option>
+                    <option value="groups">Gruppo</option>
                 </select>
 
                 <input type="text" name="search" placeholder="Cerca..." value="" />
@@ -48,7 +51,7 @@
                     <?php foreach ($params["authors"] as $author): ?>
                         <li>
                             <a href="search.php?info=search-bar&type=author&search=<?php echo $author["Nome"]; ?>">Nome: <?php echo $author["Nome"]; ?> [<?php echo $author["Alias"] ?>]</a>
-                            <p class="comments">Punteggio: <?php echo $author["Punteggio"]; ?>/5</p>
+                            <p class="comments">Punteggio: <?php echo sprintf("%1.2f", $author["Punteggio"]); ?>/5</p>
                         </li>
                     <?php endforeach; ?>
                 </ul>

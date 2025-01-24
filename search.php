@@ -20,6 +20,12 @@
             $params["texts"] = $db->searchTextByGroupLike($_GET["search"]);
         }
         
+    } else if (isset($_GET["info"]) && $_GET["type"] == "title") {
+        //Show texts from title
+        $params["texts"] = $db->searchTextsByTitleLike($_GET["search"]);
+    } else if (isset($_GET["info"]) && $_GET["type"] == "genres") {
+        //Show texts from genres
+        $params["texts"] = $db->searchTextsByGenreLike($_GET["search"]);
     } else if (isset($_GET["info"]) && $_GET["type"] == "authors") { 
         //Show authors
         $params["authors"] = $db->searchAuthorLike($_GET["search"]);
