@@ -9,6 +9,7 @@
 
     //Search Params
     if (isset($_GET["info"]) && $_GET["info"] == "search-bar" && isset($_GET["type"])) {
+        //Show texts
         if ($_GET["type"] == "title") {
             $params["texts"] = $db->searchTextsByTitleLike($_GET["search"]);
         } else if ($_GET["type"] == "author") {
@@ -18,6 +19,19 @@
         } else if ($_GET["type"] == "group") {
             $params["texts"] = $db->searchTextByGroupLike($_GET["search"]);
         }
+        
+    } else if (isset($_GET["info"]) && $_GET["type"] == "authors") { 
+        //Show authors
+        $params["authors"] = $db->searchAuthorLike($_GET["search"]);
+
+    } else if (isset($_GET["info"]) && $_GET["type"] == "topics") {
+        //Show topics
+        $params["topics"] = $db->searchTopicLike($_GET["search"]);
+
+    } else if (isset($_GET["info"]) && $_GET["type"] == "groups") {
+        //Show groups
+        $params["groups"] = $db->searchGroupsLike($_GET["search"]);
+
     } else {
         $params["texts"] = $db->getAllTexts();
     }

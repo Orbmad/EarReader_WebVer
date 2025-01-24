@@ -216,7 +216,7 @@ main.login section, main.signup section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 3px 3px 1px #524629;
+  box-shadow: 3px 3px 2px #524629;
   border: 2px solid #98B895;
   background-color: #F6F2EF;
   padding: 15px;
@@ -258,13 +258,14 @@ main.library > section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 3px 3px 1px #524629;
-  background-color: #F6F2EF;
+  background-color: transparent;
   padding: 20xp;
   min-width: 96%;
 }
 main.library > section h1 {
   color: #524629;
+  font-size: 32px;
+  font-weight: bolder;
 }
 main.library > section section {
   display: flex;
@@ -287,11 +288,14 @@ main.library > section section ul li {
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  box-shadow: 3px 3px 2px #524629;
+  background-color: #F6F2EF;
   justify-content: space-around;
-  width: 50%;
+  width: 70%;
   border: 1px solid #AC8E58;
   border-radius: 30px;
   margin-bottom: 6px;
+  padding: 0px 16px;
 }
 main.library > section section ul li a {
   font-size: 18px;
@@ -313,12 +317,15 @@ main.home {
 main.home > section {
   display: flex;
   flex-direction: column;
-  box-shadow: 3px 3px 1px #524629;
+  box-shadow: 3px 3px 2px #524629;
   background-color: #F6F2EF;
   width: 86%;
   height: 260px;
-  margin: 16px;
+  margin: 20px;
   justify-content: center;
+  border: 1px solid #AC8E58;
+  border-radius: 4px;
+  padding: 10px;
 }
 main.home > section h1 {
   margin: 10px;
@@ -337,7 +344,7 @@ main.home > section li {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  box-shadow: 3px 3px 1px #524629;
+  box-shadow: 3px 3px 2px #524629;
   justify-content: space-between;
   border: 1px solid #98B895;
   border-radius: 20px;
@@ -381,6 +388,7 @@ main.home > section.groups {
   background-color: transparent;
   box-shadow: none;
   width: 60%;
+  border: none;
 }
 main.home > section.groups h1 {
   text-align: center;
@@ -416,6 +424,7 @@ main.home > section.groups ul li a {
   padding: 16px;
   border-radius: 12px;
   box-shadow: 3px 3px 3px #524629;
+  text-decoration: none;
   cursor: pointer;
 }
 main.home > section.groups ul li a h2 {
@@ -424,6 +433,7 @@ main.home > section.groups ul li a h2 {
   color: #F6F2EF;
   margin: 6px 0px;
   width: 100%;
+  box-shadow: none;
 }
 main.home > section.groups ul li a p {
   margin: 0px;
@@ -433,6 +443,7 @@ main.home > section.groups ul li a p {
   width: calc(100% - 20px);
   height: calc(100% - 32px - 30px);
   background-color: #F6F2EF;
+  text-decoration: none;
 }
 main.home > section.groups ul li a:hover {
   scale: 1.1;
@@ -445,7 +456,7 @@ main.text-page section.main-section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 3px 3px 1px #524629;
+  box-shadow: 3px 3px 2px #524629;
   background-color: #F6F2EF;
   width: 100%;
 }
@@ -664,7 +675,7 @@ main.topic section {
   flex-direction: column;
   justify-content: left;
   text-align: left;
-  box-shadow: 3px 3px 1px #524629;
+  box-shadow: 3px 3px 2px #524629;
   background-color: #F6F2EF;
   width: 68%;
   padding: 20px;
@@ -813,7 +824,7 @@ main.search > section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 3px 3px 1px #524629;
+  box-shadow: 3px 3px 2px #524629;
   background-color: #F6F2EF;
   padding: 20xp;
   min-width: 96%;

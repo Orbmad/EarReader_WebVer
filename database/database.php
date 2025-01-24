@@ -729,4 +729,45 @@ class Database
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function searchAuthorLike($search) {
+        $search = $search . "%";
+        $query = "SELECT *
+                FROM Autori
+                WHERE LOWER(Nome) LIKE LOWER(?)
+                OR LOWER(Alias) LIKE LOWER(?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ss', $search, $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function searchTopicLike($search) {
+        $search = $search . "%";
+        $query = "SELECT *
+                FROM Discussioni
+                WHERE LOWER(Titolo) LIKE LOWER(?)
+                OR LOWER(Argomento) LIKE LOWER(?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ss', $search, $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function searchGroupsLike($search) {
+        $search = $search . "%";
+        $query = "SELECT *
+                FROM Gruppi
+                WHERE LOWER(NomeGruppo) LIKE LOWER(?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }

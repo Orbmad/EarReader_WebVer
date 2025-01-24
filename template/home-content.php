@@ -54,7 +54,7 @@
             <?php foreach ($params["authors"] as $author): ?>
                 <?php if ($count++ > $limit) break; ?>
                 <li>
-                    <a href="#">Nome: <?php echo $author["Nome"]; ?> [<?php echo $author["Alias"] ?>]</a>
+                    <a href="search.php?info=search-bar&type=author&search=<?php echo $author["Nome"]; ?>">Nome: <?php echo $author["Nome"]; ?> [<?php echo $author["Alias"] ?>]</a>
                     <p class="comments">Punteggio: <?php echo sprintf("%1.2f", $author["Punteggio"]); ?>/5</p>
                 </li>
             <!--End foreach-->
@@ -87,7 +87,7 @@
         <ul>
             <?php foreach ($params["groups"] as $group): ?>
                 <li>
-                    <a>
+                    <a href="search.php?info=search-bar&type=group&search=<?php echo $group["NomeGruppo"]; ?>">
                         <h2><?php echo $group["NomeGruppo"]; ?></h2>
                         <p><?php echo $group["Descrizione"]; ?></p>
                     </a>
