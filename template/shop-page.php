@@ -22,7 +22,7 @@
 
         <section class="payment">
             <h1>Pagamento</h1>
-            <form action="#" method="POST">
+            <form action="../utils/buyCurrency.php" method="POST">
 
                 <label for="qt">Seleziona quantità:</label>
                 <input type="number" id="qt" required/>
