@@ -1,5 +1,4 @@
 - Controlla relazione, costo in pagamenti;
 - Gestisci like e dislike ai commenti
 
-- Completa buy chapter
-- implementa primo capitolo gratuito
+- Implementa lettore

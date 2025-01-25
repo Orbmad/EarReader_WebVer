@@ -3,7 +3,8 @@ class Database
 {
     private $db;
 
-    public function __construct($servername, $username, $password, $dbname, $port) {
+    public function __construct($servername, $username, $password, $dbname, $port)
+    {
         $this->db = new mysqli($servername, $username, $password, $dbname, $port);
         if ($this->db->connect_error) {
             die("Connection failed: " . $this->db->connect_error);
@@ -13,7 +14,8 @@ class Database
     /**
      * Checks if a user exists and return its data.
      */
-    public function checkLogin($email, $password) {
+    public function checkLogin($email, $password)
+    {
         $query = "SELECT Email, Nickname, EarCoins FROM Utenti WHERE Email = ? AND Password_hash = SHA2(?, 256)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ss', $email, $password);
@@ -23,7 +25,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC)[0];
     }
 
-    public function getUserName($email) {
+    public function getUserName($email)
+    {
         $stmt = $this->db->prepare("SELECT Nickname FROM Utenti WHERE Email = ?");
         $stmt->bind_param('s', $email);
         $stmt->execute();
@@ -34,7 +37,8 @@ class Database
     /**
      * Creates a new user in the database. [OP01]
      */
-    public function newUser($nickname, $email, $password) {
+    public function newUser($nickname, $email, $password)
+    {
         $query = "INSERT INTO Utenti (Email, Nickname, Password_hash) VALUES (?, ?, SHA2(?, 256))";
         try {
             $stmt = $this->db->prepare($query);
@@ -49,7 +53,8 @@ class Database
     /**
      * Returns all the texts acquired by the user.
      */
-    public function getUserLibrary($email) {
+    public function getUserLibrary($email)
+    {
         $query = "SELECT 
                 T.Codice,
                 T.Data_ora,
@@ -71,10 +76,25 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getNumberOfChapters($textCode) {
+        $query = "SELECT COUNT(C.Numero) AS NumeroCapitoli
+                FROM Testi T
+                JOIN Capitoli C ON T.Codice = C.CodiceTesto
+                WHERE T.Codice = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $textCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["NumeroCapitoli"];
+
+    }
+
     /**
      * Returns chapter data.
      */
-    public function getChapter($textCode, $chapterNumber) {
+    public function getChapter($textCode, $chapterNumber)
+    {
         $query = "SELECT * FROM Capitoli WHERE CodiceTesto=? AND Numero=?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ii', $textCode, $chapterNumber);
@@ -87,7 +107,8 @@ class Database
     /**
      * Returns the user currency
      */
-    public function getUserCurrency($email) {
+    public function getUserCurrency($email)
+    {
         $query = "SELECT EarCoins
                 FROM Utenti
                 WHERE Email = ?";
@@ -99,7 +120,8 @@ class Database
         return (int)$result->fetch_assoc()["EarCoins"];
     }
 
-    public function addCurrency($email, $currency) {
+    public function addCurrency($email, $currency)
+    {
         $query = "UPDATE Utenti
                 SET EarCoins = EarCoins + ?
                 WHERE Email = ?";
@@ -113,13 +135,29 @@ class Database
         }
     }
 
+    private function checkGotChapters($textCode)
+    {
+        $query = "SELECT Singolo
+                FROM Testi
+                WHERE Codice = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $textCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["Singolo"];
+    }
 
     /**
      * Adds a chapter to the user library. [OP02]
      */
-    public function buyChapter($email, $textCode, $chapterNumber, $chapterCost) {
-        if (!$this->removeCurrencyIfPossible($email, $chapterCost, $this->getUserCurrency($email))) {
-            return false;
+    public function buyChapter($email, $textCode, $chapterNumber, $chapterCost)
+    {
+        $single = $this->checkGotChapters($textCode);
+        if ($single || (!$single && $chapterNumber != 1)) {
+            if (!$this->removeCurrencyIfPossible($email, $chapterCost, $this->getUserCurrency($email))) {
+                return false;
+            }
         }
         $query = "INSERT INTO AcquistiCap (Numero, CodiceTesto, Email) VALUES (?, ?, ?)";
         try {
@@ -132,7 +170,8 @@ class Database
         }
     }
 
-    public function isChapterPossesed($email, $textCode, $chapterNumber) {
+    public function isChapterPossesed($email, $textCode, $chapterNumber)
+    {
         $query = "SELECT U.Email
                 FROM Utenti U
                 JOIN AcquistiCap A ON A.Email = U.Email
@@ -148,7 +187,8 @@ class Database
         return count($result->fetch_all()) > 0;
     }
 
-    private function removeCurrencyIfPossible($email, $currency, $userCurrency) {
+    private function removeCurrencyIfPossible($email, $currency, $userCurrency)
+    {
         if ($userCurrency == null) {
             return false;
         } else if ($currency > $userCurrency) {
@@ -170,7 +210,8 @@ class Database
     /**
      * Updates the text ranking
      */
-    public function updateTextRate($textCode) {
+    public function updateTextRate($textCode)
+    {
         $query = "UPDATE Testi
                 SET Voto = (
                     SELECT AVG(Voto)
@@ -188,7 +229,8 @@ class Database
         }
     }
 
-    public function getAuthors() {
+    public function getAuthors()
+    {
         $query = "SELECT * FROM Autori";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
@@ -200,7 +242,8 @@ class Database
     /**
      * Updates the author ranking
      */
-    public function updateAuthorRate($authorCode) {
+    public function updateAuthorRate($authorCode)
+    {
         $query = "UPDATE Autori
                 SET Punteggio = (
                     SELECT AVG(Voto)
@@ -223,7 +266,8 @@ class Database
     /**
      * Returns true if a review allready exists
      */
-    private function checkExistingReview($email, $textCode) {
+    private function checkExistingReview($email, $textCode)
+    {
         $query = "SELECT *
                 FROM Recensioni
                 WHERE Email = ?
@@ -239,7 +283,8 @@ class Database
     /**
      * Adds a review. [OP03]
      */
-    public function addReview($email, $textCode, $rate, $title, $text) {
+    public function addReview($email, $textCode, $rate, $title, $text)
+    {
         $exist = $this->checkExistingReview($email, $textCode);
         if ($exist) {
             $query = "UPDATE Recensioni
@@ -271,7 +316,8 @@ class Database
     /**
      * Returns a text.
      */
-    public function getText($textCode) {
+    public function getText($textCode)
+    {
         $query = "SELECT * FROM Testi WHERE Codice = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $textCode);
@@ -284,7 +330,8 @@ class Database
     /**
      * Returns all the chapters of a text.
      */
-    public function getChaptersOfText($textCode) {
+    public function getChaptersOfText($textCode)
+    {
         $query = "SELECT C.CodiceTesto, C.Numero, C.PercorsoCapitolo, C.Titolo
                 FROM Capitoli C
                 JOIN Testi T ON T.Codice = C.CodiceTesto
@@ -300,7 +347,8 @@ class Database
     /**
      * Returns all the reviews of a text
      */
-    public function getReviewsOfText($textCode) {
+    public function getReviewsOfText($textCode)
+    {
         $query = "SELECT * FROM Recensioni WHERE COdiceTesto = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $textCode);
@@ -313,7 +361,8 @@ class Database
     /**
      * Returns all the tags of a text.
      */
-    public function getTagsOfText($textCode) {
+    public function getTagsOfText($textCode)
+    {
         $query = "SELECT Nome
                 FROM Tag A
                 JOIN Contiene C ON A.Codice = C.CodiceTag
@@ -330,7 +379,8 @@ class Database
     /**
      * Returns the authors of a text.
      */
-    public function getAuthorsOfText($textCode) {
+    public function getAuthorsOfText($textCode)
+    {
         $query = "SELECT A.*
                 FROM Autori A
                 JOIN Scritture S ON A.CodiceAutore = S.CodiceAutore
@@ -344,7 +394,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    private function countTextChapters($textCode) {
+    private function countTextChapters($textCode)
+    {
         $query = "SELECT COUNT(*) AS CapitoliTotali
                 FROM Capitoli C
                 WHERE C.CodiceTesto = ?";
@@ -356,7 +407,8 @@ class Database
         return $result->fetch_assoc()['CapitoliTotali'];
     }
 
-    private function countTextBoughtChapters($email, $textCode) {
+    private function countTextBoughtChapters($email, $textCode)
+    {
         $query = "SELECT COUNT(*) AS CapitoliAcquistati
                 FROM AcquistiCap AC
                 WHERE AC.Email = ? AND AC.CodiceTesto = ?";
@@ -371,7 +423,8 @@ class Database
     /**
      * Returns true if the user has bought all the chapters of a text.
      */
-    public function isReviewPossible($email, $textCode) {
+    public function isReviewPossible($email, $textCode)
+    {
         $totalChapters = $this->countTextChapters($textCode);
         $boughtChapters = $this->countTextBoughtChapters($email, $textCode);
         if ($totalChapters == 1) {
@@ -384,7 +437,8 @@ class Database
     /**
      * Creates a new topic. [OP04]
      */
-    public function newTopic($email, $title, $text, $topic) {
+    public function newTopic($email, $title, $text, $topic)
+    {
         $query = "INSERT INTO Discussioni (Email, Titolo, Stringa, Argomento)
                 VALUES (?, ?, ?, ?)";
         try {
@@ -400,7 +454,8 @@ class Database
     /**
      * Returns all the topics.
      */
-    public function getTopics() {
+    public function getTopics()
+    {
         $query = "SELECT * FROM Discussioni";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
@@ -412,7 +467,8 @@ class Database
     /**
      * Returns a topic
      */
-    public function getTopic($authorEmail, $title) {
+    public function getTopic($authorEmail, $title)
+    {
         $query = "SELECT * FROM Discussioni
                 WHERE Email = ?
                 AND Titolo = ?";
@@ -424,7 +480,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    private function incrementNumberOfComments($authorEmail, $title) {
+    private function incrementNumberOfComments($authorEmail, $title)
+    {
         $query = "UPDATE Discussioni
                 SET NumeroCommenti = NumeroCommenti + 1
                 WHERE Email = ?
@@ -442,7 +499,8 @@ class Database
     /**
      * Adds a comment to a topic. [OP05]
      */
-    public function addCommentToTopic($email, $text, $authorEmail, $title) {
+    public function addCommentToTopic($email, $text, $authorEmail, $title)
+    {
         $query = "INSERT INTO Commenti (Email, Titolo, Stringa, EmailUtente)
                 VALUES (?, ?, ?, ?)";
         try {
@@ -455,7 +513,8 @@ class Database
         }
     }
 
-    private function getLikesOfComment($commentEmail, $title, $code) {
+    private function getLikesOfComment($commentEmail, $title, $code)
+    {
         $query = "SELECT MiPiace FROM Valutazioni
                 WHERE Email = ?
                 AND Titolo = ?
@@ -471,7 +530,8 @@ class Database
     /**
      * Returns all the comments of a topic.
      */
-    public function getCommentsOfTopic($authorEmail, $title) {
+    public function getCommentsOfTopic($authorEmail, $title)
+    {
         $query = "SELECT * FROM Commenti
                 WHERE Email = ?
                 AND Titolo = ?";
@@ -502,7 +562,8 @@ class Database
     /**
      * Adds like or dislike to a comment
      */
-    public function addLike($email, $authorEmail, $title, $code, $like) {
+    public function addLike($email, $authorEmail, $title, $code, $like)
+    {
         $query = "INSERT INTO Valutazioni (EmailUtente, Email, Titolo, Codice, MiPiace)
                 VALUES (?, ?, ?, ?, ?)";
         $like = $like ? 1 : 0;
@@ -519,7 +580,8 @@ class Database
     /**
      * Returns all payment methods.
      */
-    public function getPaymentsMethods() {
+    public function getPaymentsMethods()
+    {
         $query = "SELECT * FROM Metodi";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
@@ -531,7 +593,8 @@ class Database
     /**
      * Returns discounts.
      */
-    public function getDiscounts() {
+    public function getDiscounts()
+    {
         $query = "SELECT * FROM Sconti";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
@@ -543,7 +606,8 @@ class Database
     /**
      * Completes a payment. [OP06]
      */
-    public function buyNewCurrency($email, $earCoins, $methodCode, $discountCode) {
+    public function buyNewCurrency($email, $earCoins, $methodCode, $discountCode)
+    {
         $query = "INSERT INTO Pagamenti (Email, EarCoins, CodiceMetodo, CodiceSconto)
                 VALUES (?, ?, ?, ?)";
         try {
@@ -559,7 +623,8 @@ class Database
     /**
      * Searches for a text by author. [OP07.1]
      */
-    public function searchTextByAuthor($authorName) {
+    public function searchTextByAuthor($authorName)
+    {
         $query = "SELECT *
                 FROM Testi T
                 JOIN Scritture S ON T.Codice = S.CodiceTesto
@@ -576,7 +641,8 @@ class Database
     /**
      * Returns all the genres in the database.
      */
-    public function getGenres() {
+    public function getGenres()
+    {
         $query = "SELECT *
                 FROM Generi";
         $stmt = $this->db->prepare($query);
@@ -589,7 +655,8 @@ class Database
     /**
      * Searches of a text by genre. [OP07.2]
      */
-    public function searchTextByGenre($genre) {
+    public function searchTextByGenre($genre)
+    {
         $query = "SELECT *
                 FROM Testi
                 WHERE NomeGenere = ?";
@@ -604,7 +671,8 @@ class Database
     /**
      * Returns all groups.
      */
-    public function getGroups() {
+    public function getGroups()
+    {
         $query = "SELECT *
                 FROM Gruppi";
         $stmt = $this->db->prepare($query);
@@ -617,7 +685,8 @@ class Database
     /**
      * Searches a text by its group. [OP07.3]
      */
-    public function searchTextByGroup($group) {
+    public function searchTextByGroup($group)
+    {
         $query = "SELECT *
                 FROM Testi T
                 JOIN Appartenenze A ON T.Codice = A.CodiceTesto
@@ -633,20 +702,22 @@ class Database
     /**
      * Returns all texts ordered by rank. [OP08]
      */
-    public function getTextRanking() {
+    public function getTextRanking()
+    {
         $query = "SELECT * FROM Testi
                 ORDER BY Voto DESC, Titolo ASC";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all(MYSQLI_ASSOC);   
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
      * Returns authors ranking. [OP09]
      */
-    public function getAuthorRanking() {
+    public function getAuthorRanking()
+    {
         $query = "SELECT *
                 FROM Autori
                 ORDER BY Punteggio DESC";
@@ -660,7 +731,8 @@ class Database
     /**
      * Returns the topics ranking. [OP10]
      */
-    public function getTopicRanking() {
+    public function getTopicRanking()
+    {
         $query = "SELECT * FROM Discussioni
                 ORDER BY NumeroCommenti DESC, Titolo ASC";
         $stmt = $this->db->prepare($query);
@@ -673,7 +745,8 @@ class Database
     /**
      * Returns suggested texts. [OP11]
      */
-    public function suggestedTexts($email) {
+    public function suggestedTexts($email)
+    {
         $query = "SELECT DISTINCT T.Codice, T.Titolo, T.Singolo, T.Percorso, T.Costo, T.Voto, T.NomeGenere
                 FROM Testi T
                 JOIN Contiene C ON T.Codice = C.CodiceTesto
@@ -702,7 +775,8 @@ class Database
 
     //SEARCH QUERIES
 
-    public function searchTextsByTitleLike($search) {
+    public function searchTextsByTitleLike($search)
+    {
         $search = $search . "%";
         $query = "SELECT *
                 FROM Testi
@@ -715,7 +789,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function searchTextsByAuthorLike($search) {
+    public function searchTextsByAuthorLike($search)
+    {
         $search = $search . "%";
         $query = "SELECT T.Codice, T.Titolo, T.Singolo, T.Percorso, T.Costo, T.Voto, T.NomeGenere
                 FROM Testi T
@@ -731,7 +806,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function searchTextsByGenreLike($search) {
+    public function searchTextsByGenreLike($search)
+    {
         $search = $search . "%";
         $query = "SELECT *
                 FROM Testi T
@@ -744,7 +820,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function searchTextByGroupLike($search) {
+    public function searchTextByGroupLike($search)
+    {
         $search = $search . "%";
         $query = "SELECT T.Codice, T.Titolo, T.Singolo, T.Percorso, T.Costo, T.Voto, T.NomeGenere
                 FROM Testi T
@@ -759,7 +836,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getAllTexts() {
+    public function getAllTexts()
+    {
         $query = "SELECT T.Codice, T.Titolo, T.Singolo, T.Percorso, T.Costo, T.Voto, T.NomeGenere
                 FROM Testi T
                 JOIN Appartenenze A ON T.Codice = A.CodiceTesto
@@ -773,7 +851,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function searchAuthorLike($search) {
+    public function searchAuthorLike($search)
+    {
         $search = $search . "%";
         $query = "SELECT *
                 FROM Autori
@@ -787,7 +866,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function searchTopicLike($search) {
+    public function searchTopicLike($search)
+    {
         $search = $search . "%";
         $query = "SELECT *
                 FROM Discussioni
@@ -801,7 +881,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function searchGroupsLike($search) {
+    public function searchGroupsLike($search)
+    {
         $search = $search . "%";
         $query = "SELECT *
                 FROM Gruppi
@@ -816,7 +897,8 @@ class Database
 
     //SHOP QUERIES
 
-    public function getDiscountTable() {
+    public function getDiscountTable()
+    {
         $query = "SELECT * FROM Sconti";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
@@ -825,7 +907,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getPaymentMethods() {
+    public function getPaymentMethods()
+    {
         $query = "SELECT * FROM Metodi";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
@@ -834,7 +917,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getMethodCodeFromMethodName($methodName) {
+    public function getMethodCodeFromMethodName($methodName)
+    {
         $query = "SELECT * FROM Metodi WHERE NomeMetodo = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $methodName);
@@ -844,7 +928,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC)[0]["CodiceMetodo"];
     }
 
-    public function getDiscountCodeFromQuantity($quantity) {
+    public function getDiscountCodeFromQuantity($quantity)
+    {
         $query = "SELECT CodiceSconto
                 FROM Sconti
                 WHERE QuantitaMinima <= ?
@@ -855,7 +940,6 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all(MYSQLI_ASSOC)[0]["CodiceSconto"];   
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["CodiceSconto"];
     }
-
 }

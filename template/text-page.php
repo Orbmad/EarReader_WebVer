@@ -25,7 +25,7 @@
                     <li>
                         <p>#<?php echo $chapter["Numero"]; ?></p>
                         <p><?php echo $chapter["Titolo"]; ?></p>
-                        <p>Costo: <?php echo $params["text"]["Costo"]; ?></p>
+                        <p><?php if ($chapter["Numero"] != 1 || $params["text"]["Singolo"]) {echo "Costo: " . $params["text"]["Costo"]; } else { echo "Gratuito";} ?></p>
                         <!--Acquista capitolo e leggi se acquistato-->
                         <a class="buy <?php if ($db->isChapterPossesed($_SESSION["user"]["Email"], $params["text"]["Codice"], $chapter["Numero"])) {
                                             echo "hidden";

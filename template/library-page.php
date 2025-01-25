@@ -9,7 +9,7 @@
                         <p><?php if ($text["Singolo"]) {
                                 echo "Testo completo";
                             } else {
-                                echo "Capitoli: " . $text["NumeroCapitoli"];
+                                echo "Capitoli: " . $db->getNumberOfChapters($text["Codice"]);
                             } ?></p>
                         <p>Voto: <?php echo sprintf("%1.1f", $text["Voto"]); ?>/5</p>
                     </li>
