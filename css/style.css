@@ -254,6 +254,18 @@ main.login section form ul li, main.signup section form ul li {
 main.login section form ul li:last-child, main.signup section form ul li:last-child {
   margin-top: 15px;
 }
+main.login section form ul li a, main.signup section form ul li a {
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 30px;
+  width: 30%;
+  color: #F6F2EF;
+  background-color: #524629;
+  text-decoration: none;
+}
+main.login section form ul li a:hover, main.signup section form ul li a:hover {
+  scale: 1.1;
+}
 main.library {
   padding: 30px;
 }

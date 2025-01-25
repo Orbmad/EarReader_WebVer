@@ -23,7 +23,7 @@
                     <input type="password" id="checkpassword" name="checkpassword" required/>
                 </li>
                 <li>
-                    <input type="submit" name="back" value="Indietro" />
+                    <a href="index.php">Indietro</a>
                     <input type="submit" name="submit" value="Iscriviti" />
                 </li>
             </ul>
