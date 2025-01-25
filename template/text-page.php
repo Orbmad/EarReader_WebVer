@@ -25,14 +25,18 @@
                     <li>
                         <p>#<?php echo $chapter["Numero"]; ?></p>
                         <p><?php echo $chapter["Titolo"]; ?></p>
-                        <p><?php if ($chapter["Numero"] != 1 || $params["text"]["Singolo"]) {echo "Costo: " . $params["text"]["Costo"]; } else { echo "Gratuito";} ?></p>
+                        <p><?php if ($chapter["Numero"] != 1 || $params["text"]["Singolo"]) {
+                                echo "Costo: " . $params["text"]["Costo"];
+                            } else {
+                                echo "Gratuito";
+                            } ?></p>
                         <!--Acquista capitolo e leggi se acquistato-->
                         <a class="buy <?php if ($db->isChapterPossesed($_SESSION["user"]["Email"], $params["text"]["Codice"], $chapter["Numero"])) {
                                             echo "hidden";
                                         } ?>" href=<?php echo "utils/api-buyChapter.php?code=" . $params["text"]["Codice"] . "&number=" . $chapter["Numero"] . "&cost=" . $params["text"]["Costo"] . "&title=" . $params["text"]["Titolo"]; ?>>Ottieni</a>
                         <a class="read <?php if (!$db->isChapterPossesed($_SESSION["user"]["Email"], $params["text"]["Codice"], $chapter["Numero"])) {
                                             echo "hidden";
-                                        } ?>" href="utils.api-readChapter.php">Leggi</a>
+                                        } ?>" href="read.php?text-path=<?php echo $params["text"]["Percorso"]; ?>&chapter-path=<?php echo $chapter["PercorsoCapitolo"]; ?>&title=<?php echo $params["text"]["Titolo"] . " " . $chapter["Titolo"]; ?>">Leggi</a>
                     </li>
                 <?php endforeach; ?>
             </ul>
