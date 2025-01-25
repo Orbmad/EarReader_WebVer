@@ -8,19 +8,19 @@
             <ul>
                 <li>
                     <label for="nickname">Nickname:</label>
-                    <input type="text" id="nickname" name="nickname"/>
+                    <input type="text" id="nickname" name="nickname" required/>
                 </li>
                 <li>
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email"/>
+                    <input type="email" id="email" name="email" required/>
                 </li>
                 <li>
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password"/>
+                    <input type="password" id="password" name="password" required/>
                 </li>
                 <li>
                     <label for="checkpassword">Conferma password:</label>
-                    <input type="password" id="checkpassword" name="checkpassword"/>
+                    <input type="password" id="checkpassword" name="checkpassword" required/>
                 </li>
                 <li>
                     <input type="submit" name="back" value="Indietro" />
