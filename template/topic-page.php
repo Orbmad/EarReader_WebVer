@@ -9,21 +9,22 @@
         <p class="text"><?php echo $params["topic"]["Stringa"]; ?></p>
         <section>
             <ul>
-                <?php foreach($params["comments"] as $comment): ?>
-                <li>
-                    <h4><?php echo $db->getUserName($comment["EmailUtente"])["Nickname"]; ?></h4>
-                    <p><?php echo $comment["Stringa"]; ?></p>
-                    <section class="likes">
-                        <button>
-                            <img src="upload/like.png" alt="like">
-                        </button>
-                        <p><?php echo $comment["likes"]; ?></p>
-                        <button>
-                            <img src="upload/dislike.png" alt="dislike">
-                        </button>
-                        <p><?php echo $comment["dislikes"]; ?></p>
-                    </section>
-                </li>
+                <?php foreach ($params["comments"] as $comment): ?>
+                    <li>
+                        <h4><?php echo $db->getUserName($comment["EmailUtente"])["Nickname"]; ?></h4>
+                        <p><?php echo $comment["Stringa"]; ?></p>
+                        <section class="likes">
+                            <?php $get = "&author=" . $params["topic"]["Email"] . "&title=" . $params["topic"]["Titolo"] . "&code=" . $comment["Codice"]; ?>
+                            <a href="utils/api-addLike.php?like=up<?php echo $get; ?>">
+                                <img src="upload/like.png" alt="like">
+                            </a>
+                            <p><?php echo $comment["likes"]; ?></p>
+                            <a href="utils/api-addLike.php?like=down<?php echo $get; ?>">
+                                <img src="upload/dislike.png" alt="dislike">
+                            </a>
+                            <p><?php echo $comment["dislikes"]; ?></p>
+                        </section>
+                    </li>
                 <?php endforeach; ?>
             </ul>
         </section>

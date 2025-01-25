@@ -76,7 +76,8 @@ class Database
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getNumberOfChapters($textCode) {
+    public function getNumberOfChapters($textCode)
+    {
         $query = "SELECT COUNT(C.Numero) AS NumeroCapitoli
                 FROM Testi T
                 JOIN Capitoli C ON T.Codice = C.CodiceTesto
@@ -87,7 +88,6 @@ class Database
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC)[0]["NumeroCapitoli"];
-
     }
 
     /**
@@ -515,7 +515,7 @@ class Database
 
     private function getLikesOfComment($commentEmail, $title, $code)
     {
-        $query = "SELECT MiPiace FROM Valutazioni
+        $query = "SELECT * FROM Valutazioni
                 WHERE Email = ?
                 AND Titolo = ?
                 AND Codice = ?";
@@ -524,7 +524,7 @@ class Database
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -546,7 +546,7 @@ class Database
             $likes = 0;
             $dislikes = 0;
             foreach ($res as $r) {
-                if ($r == true) {
+                if ($r["MiPiace"] == 1) {
                     $likes++;
                 } else {
                     $dislikes++;
@@ -559,17 +559,49 @@ class Database
         return $comments;
     }
 
+    private function isPresentLike($email, $authorEmail, $title, $code)
+    {
+        $query = "SELECT MiPiace
+                FROM Valutazioni
+                WHERE EmailUtente = ?
+                AND Email = ?
+                AND Titolo = ?
+                AND Codice = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sssi', $email, $authorEmail, $title, $code);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return count($result->fetch_all(MYSQLI_ASSOC)) > 0;
+    }
+
     /**
      * Adds like or dislike to a comment
      */
     public function addLike($email, $authorEmail, $title, $code, $like)
     {
-        $query = "INSERT INTO Valutazioni (EmailUtente, Email, Titolo, Codice, MiPiace)
-                VALUES (?, ?, ?, ?, ?)";
+        $present = $this->isPresentLike($email, $authorEmail, $title, $code);
         $like = $like ? 1 : 0;
+
+        if ($present) {
+            $query = "UPDATE Valutazioni
+                    SET MiPiace = ?
+                    WHERE EmailUtente = ?
+                    AND Email = ?
+                    AND Titolo = ?
+                    AND Codice = ?";
+        } else {
+            $query = "INSERT INTO Valutazioni (EmailUtente, Email, Titolo, Codice, MiPiace)
+                VALUES (?, ?, ?, ?, ?)";
+        }
+
         try {
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('sssii', $email, $authorEmail, $title, $code, $like);
+            if ($present) {
+                $stmt->bind_param('isssi', $like, $email, $authorEmail, $title, $code);
+            } else {
+                $stmt->bind_param('sssii', $email, $authorEmail, $title, $code, $like);
+            }
             $stmt->execute();
             return true;
         } catch (PDOException) {

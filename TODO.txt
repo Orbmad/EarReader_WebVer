@@ -1,4 +1,1 @@
-- Controlla relazione, costo in pagamenti;
-- Gestisci like e dislike ai commenti
-
-- Implementa lettore
+- Controlla relazione, costo in pagamenti
