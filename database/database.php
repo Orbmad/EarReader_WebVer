@@ -99,6 +99,21 @@ class Database
         return (int)$result->fetch_assoc()["EarCoins"];
     }
 
+    public function addCurrency($email, $currency) {
+        $query = "UPDATE Utenti
+                SET EarCoins = EarCoins + ?
+                WHERE Email = ?";
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('is', $currency, $email);
+            $stmt->execute();
+            return true;
+        } catch (PDOException) {
+            return false;
+        }
+    }
+
+
     /**
      * Adds a chapter to the user library. [OP02]
      */
@@ -501,7 +516,7 @@ class Database
      * Completes a payment. [OP06]
      */
     public function buyNewCurrency($email, $earCoins, $methodCode, $discountCode) {
-        $query = "INSERT INTO Pagamenti (Email, EarCoins, CodiceMetodo, CodicePagamento)
+        $query = "INSERT INTO Pagamenti (Email, EarCoins, CodiceMetodo, CodiceSconto)
                 VALUES (?, ?, ?, ?)";
         try {
             $stmt = $this->db->prepare($query);
@@ -789,6 +804,30 @@ class Database
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getMethodCodeFromMethodName($methodName) {
+        $query = "SELECT * FROM Metodi WHERE NomeMetodo = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $methodName);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["CodiceMetodo"];
+    }
+
+    public function getDiscountCodeFromQuantity($quantity) {
+        $query = "SELECT CodiceSconto
+                FROM Sconti
+                WHERE QuantitaMinima <= ?
+                ORDER BY Percentuale DESC
+                LIMIT 1";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $quantity);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["CodiceSconto"];   
     }
 
 }

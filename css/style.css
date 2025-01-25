@@ -385,6 +385,25 @@ main.home > section.authors ul li a {
 main.home > section.authors ul li p {
   width: 46%;
 }
+main.home > section.authors ul li:last-of-type {
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 6px 0px;
+}
+main.home > section.authors ul li:last-of-type a {
+  width: 26%;
+  background-color: #524629;
+  border: 1px solid #524629;
+  color: #F6F2EF;
+  margin: 0px auto;
+  padding: 4px 12px;
+  text-align: center;
+  border-radius: 12px;
+}
+main.home > section.authors ul li:last-of-type a:hover {
+  background-color: #F6F2EF;
+  color: #524629;
+}
 main.home > section.groups {
   height: -moz-fit-content;
   height: fit-content;
@@ -451,6 +470,46 @@ main.home > section.groups ul li a p {
 }
 main.home > section.groups ul li a:hover {
   scale: 1.1;
+}
+main.home > section.bests li:last-of-type {
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 6px 0px;
+}
+main.home > section.bests li:last-of-type a {
+  width: 26%;
+  background-color: #524629;
+  border: 1px solid #524629;
+  color: #F6F2EF;
+  margin: 0px auto;
+  padding: 4px 12px;
+  text-align: center;
+  border-radius: 12px;
+  text-decoration: none;
+}
+main.home > section.bests li:last-of-type a:hover {
+  background-color: #F6F2EF;
+  color: #524629;
+}
+main.home > section.topics li:last-of-type {
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 6px 0px;
+}
+main.home > section.topics li:last-of-type a {
+  width: 26%;
+  background-color: #524629;
+  border: 1px solid #524629;
+  color: #F6F2EF;
+  margin: 0px auto;
+  padding: 4px 12px;
+  text-align: center;
+  border-radius: 12px;
+  text-decoration: none;
+}
+main.home > section.topics li:last-of-type a:hover {
+  background-color: #F6F2EF;
+  color: #524629;
 }
 main.text-page {
   padding: 30px;

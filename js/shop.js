@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     paymentSelect.addEventListener("change", updatePaymentFields);
+    updatePaymentFields();
 
 
     // Discount selection

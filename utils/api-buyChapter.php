@@ -3,7 +3,7 @@
 
     if(isset($_GET["code"]) && isset($_GET["cost"])) {
         if ($_GET["cost"] > $_SESSION["user"]["EarCoins"]) {
-            $buyNewCurrency = "Location: ../shop.php"; //TODO
+            $buyNewCurrency = "Location: ../shop.php";
             header($buyNewCurrency);
             exit;
         }

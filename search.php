@@ -8,6 +8,11 @@
     $params["main"] = "template/search-page.php";
 
     //Search Params
+
+    if (isset($_GET["info"]) && $_GET["info"] == "home") {
+        $_GET["search"] = "";
+    }
+
     if (isset($_GET["info"]) && $_GET["info"] == "search-bar" && isset($_GET["type"])) {
         //Show texts
         if ($_GET["type"] == "title") {

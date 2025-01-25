@@ -1,5 +1,7 @@
 <main class="shop">
     <section>
+<!--DEBUGGG--><?php var_dump($_SESSION["user"]["Email"]); ?>
+
         <h1>Acquista Ear-Coins</h1>
         <h2>1,00 € = 100 EC</h2>
         <table>
@@ -22,10 +24,10 @@
 
         <section class="payment">
             <h1>Pagamento</h1>
-            <form action="../utils/buyCurrency.php" method="POST">
+            <form action="utils/api-buyCurrency.php" method="POST">
 
                 <label for="qt">Seleziona quantità:</label>
-                <input type="number" id="qt" required/>
+                <input type="number" id="qt" name="qt" required/>
 
                 <label for="perc">Sconto:</label>
                 <input type="text" id="perc" name="perc" value="0%" disabled/>
@@ -35,7 +37,6 @@
                                         
                 <label for="method-select">Metodo:</label>
                 <select name="method" id="method-select" required>
-                    <option value="" disabled selected>Metodo</option>
                     <?php foreach ($params["payments"] as $method): ?>
                         <option value="<?php echo $method["NomeMetodo"]?>"><?php echo $method["NomeMetodo"]?></option>
                     <?php endforeach; ?>

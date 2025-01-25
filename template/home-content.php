@@ -40,6 +40,9 @@
                 </li>
             <!--End foreach-->
             <?php endforeach; ?>
+            <li>
+                <a href='search.php?info=home&type=title'>Mostra tutti i testi</a>
+            </li>
         </ul>
     </section>
 
@@ -59,6 +62,9 @@
                 </li>
             <!--End foreach-->
             <?php endforeach; ?>
+                <li>
+                    <a href="search.php?info=home&type=authors">Mostra tutti gli autori</a>
+                </li>
         </ul>
     </section>
 
@@ -79,6 +85,9 @@
                 </li>
             <!--End foreach-->
             <?php endforeach; ?>
+                <li>
+                    <a href="search.php?info=home&type=topics">Mostra tutte le discussioni</a>
+                </li>
         </ul>
     </section>
 

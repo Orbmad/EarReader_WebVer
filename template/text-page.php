@@ -3,7 +3,7 @@
 
         <section class="header">
             <h1><?php echo $params["text"]["Titolo"]; ?></h1>
-            <p>Voto: <?php echo $params["text"]["Voto"]; ?>/5</p>
+            <p>Voto: <?php echo sprintf("%1.1f", $params["text"]["Voto"]); ?>/5</p>
         </section>
 
         <ul class="authors-list">

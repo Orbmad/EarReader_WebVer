@@ -413,6 +413,27 @@ main {
                         p {
                             width: 46%;
                         }
+
+                        &:last-of-type {
+                            height: fit-content;
+                            padding: 6px 0px;
+
+                            a {
+                                width: 26%;
+                                background-color: $darkBrown;
+                                border: 1px solid $darkBrown;
+                                color: $plain;
+                                margin: 0px auto;
+                                padding: 4px 12px;
+                                text-align: center;
+                                border-radius: 12px;
+
+                                &:hover {
+                                    background-color: $plain;
+                                    color: $darkBrown;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -480,6 +501,58 @@ main {
 
                             &:hover {
                                 scale: 1.1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.bests {
+                li {
+                    &:last-of-type {
+                        height: fit-content;
+                        padding: 6px 0px;
+
+                        a {
+                            width: 26%;
+                            background-color: $darkBrown;
+                            border: 1px solid $darkBrown;
+                            color: $plain;
+                            margin: 0px auto;
+                            padding: 4px 12px;
+                            text-align: center;
+                            border-radius: 12px;
+                            text-decoration: none;
+
+                            &:hover {
+                                background-color: $plain;
+                                color: $darkBrown;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.topics {
+                li {
+                    &:last-of-type {
+                        height: fit-content;
+                        padding: 6px 0px;
+
+                        a {
+                            width: 26%;
+                            background-color: $darkBrown;
+                            border: 1px solid $darkBrown;
+                            color: $plain;
+                            margin: 0px auto;
+                            padding: 4px 12px;
+                            text-align: center;
+                            border-radius: 12px;
+                            text-decoration: none;
+
+                            &:hover {
+                                background-color: $plain;
+                                color: $darkBrown;
                             }
                         }
                     }
