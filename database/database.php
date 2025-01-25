@@ -221,14 +221,42 @@ class Database
     }
 
     /**
+     * Returns true if a review allready exists
+     */
+    private function checkExistingReview($email, $textCode) {
+        $query = "SELECT *
+                FROM Recensioni
+                WHERE Email = ?
+                AND CodiceTesto = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('si', $email, $textCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return count($result->fetch_all(MYSQLI_ASSOC)) > 0;
+    }
+
+    /**
      * Adds a review. [OP03]
      */
     public function addReview($email, $textCode, $rate, $title, $text) {
-        $query = "INSERT INTO Recensioni (Email, COdiceTesto, Voto, Titolo, Stringa)
-                VALUES (?, ?, ?, ?, ?)";
+        $exist = $this->checkExistingReview($email, $textCode);
+        if ($exist) {
+            $query = "UPDATE Recensioni
+                    SET Voto = ?, Titolo = ?, Stringa = ?
+                    WHERE Email = ?
+                    AND CodiceTEsto = ?";
+        } else {
+            $query = "INSERT INTO Recensioni (Email, COdiceTesto, Voto, Titolo, Stringa)
+                    VALUES (?, ?, ?, ?, ?)";
+        }
         try {
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('siiss', $email, $textCode, $rate, $title, $text);
+            if ($exist) {
+                $stmt->bind_param('isssi', $rate, $title, $text, $email, $textCode);
+            } else {
+                $stmt->bind_param('siiss', $email, $textCode, $rate, $title, $text);
+            }
             $stmt->execute();
             if ($this->updateTextRate($textCode)) {
                 return true;
