@@ -70,10 +70,16 @@
 
     <section class="topics">
         <h1>Discussioni più partecipate</h1>
+
+        <p>
+            <a href="./writeTopic.php">Nuova discussione</a>
+        </p>
+
         <?php
             $count = 0;
             $limit = 7;
         ?>
+
         <ul>
             <!--Start foreach-->
             <?php foreach ($params["topics"] as $topic): ?>

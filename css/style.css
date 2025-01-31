@@ -22,6 +22,10 @@ input[type=submit]:hover,
 button:hover {
   scale: 1.1;
 }
+input[type=submit]:active,
+button:active {
+  scale: 0.95;
+}
 
 body {
   background-image: url("../upload/paperTextureBackground.jpg");
@@ -503,12 +507,45 @@ main.home > section.bests li:last-of-type a:hover {
   background-color: #F6F2EF;
   color: #524629;
 }
-main.home > section.topics li:last-of-type {
+main.home > section.topics {
+  display: flex;
+  flex-direction: unset;
+  flex-wrap: wrap;
+}
+main.home > section.topics h1 {
+  width: calc(50% - 20px);
+}
+main.home > section.topics p {
+  width: calc(50% - 30px);
+  margin: 10px;
+  margin-right: 20px;
+  display: inline-flex;
+  justify-content: right;
+}
+main.home > section.topics p a {
+  cursor: pointer;
+  padding: 4px 12px;
+  text-decoration: none;
+  color: #F6F2EF;
+  background-color: #524629;
+  border-radius: 10px;
+}
+main.home > section.topics p a:hover {
+  scale: 1.05;
+}
+main.home > section.topics p a:active {
+  scale: 0.95;
+}
+main.home > section.topics ul {
+  width: 100%;
+  max-height: 200px;
+}
+main.home > section.topics ul li:last-of-type {
   height: -moz-fit-content;
   height: fit-content;
   padding: 6px 0px;
 }
-main.home > section.topics li:last-of-type a {
+main.home > section.topics ul li:last-of-type a {
   width: 26%;
   background-color: #524629;
   border: 1px solid #524629;
@@ -519,7 +556,7 @@ main.home > section.topics li:last-of-type a {
   border-radius: 12px;
   text-decoration: none;
 }
-main.home > section.topics li:last-of-type a:hover {
+main.home > section.topics ul li:last-of-type a:hover {
   background-color: #F6F2EF;
   color: #524629;
 }
@@ -1183,4 +1220,89 @@ main.read section {
   width: 100%;
   height: auto;
   overflow: visible;
+}
+main.newTopic {
+  padding: 30px;
+}
+main.newTopic section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 3px 3px 2px #524629;
+  background-color: #F6F2EF;
+  border-radius: 8px;
+  width: 80%;
+  padding: 10px;
+}
+main.newTopic section h1 {
+  color: #524629;
+}
+main.newTopic section form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+main.newTopic section form ul {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-inline-start: 0px;
+}
+main.newTopic section form ul li {
+  margin-bottom: 14px;
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+main.newTopic section form ul li label {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  width: 36%;
+}
+main.newTopic section form ul li input {
+  width: 36%;
+  font-size: 16px;
+}
+main.newTopic section form ul li:nth-last-of-type(2) input {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  height: 200px;
+}
+main.newTopic section form ul li:last-of-type {
+  display: flex;
+  justify-content: space-around;
+  padding: 6px 20px;
+}
+main.newTopic section form ul li:last-of-type a {
+  cursor: pointer;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #F6F2EF;
+  background-color: #524629;
+  border-radius: 30px;
+  height: 30px;
+  width: 100px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+main.newTopic section form ul li:last-of-type a:hover {
+  scale: 1.05;
+}
+main.newTopic section form ul li:last-of-type a:active {
+  scale: 0.95;
+}
+main.newTopic section form ul li:last-of-type > input {
+  width: 140px;
+  max-width: none;
 }/*# sourceMappingURL=style.css.map */

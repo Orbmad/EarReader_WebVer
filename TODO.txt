@@ -1,1 +1,1 @@
-- Controlla relazione, costo in pagamenti
+- implementa nuova discussione
