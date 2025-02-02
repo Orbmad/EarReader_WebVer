@@ -779,7 +779,32 @@ class Database
      */
     public function suggestedTexts($email)
     {
-        $query = "SELECT DISTINCT T.Codice, T.Titolo, T.Singolo, T.Percorso, T.Costo, T.Voto, T.NomeGenere
+        $query1 = "SELECT DISTINCT T.*
+                FROM Testi T
+                JOIN Contiene C ON T.Codice = C.CodiceTesto
+                JOIN Tag TA ON TA.Codice = C.CodiceTag
+                WHERE TA.Codice IN (
+                    SELECT TA1.Codice
+                    FROM Tag TA1
+                    JOIN Contiene C1 ON C1.CodiceTag = TA1.Codice
+                    JOIN (
+                        SELECT T1.Codice
+                        FROM Testi T1
+                        JOIN Recensioni R ON T1.Codice = R.CodiceTesto
+                        WHERE R.Email = ?
+                        ORDER BY R.Voto DESC
+                        LIMIT 10
+                    ) AS testi_recensiti ON testi_recensiti.Codice = C1.CodiceTesto
+                )
+                AND T.Codice NOT IN (
+                    SELECT A.CodiceTesto
+                    FROM AcquistiCap A
+                    WHERE A.Email = ?
+                )
+                ORDER BY T.Voto DESC
+                LIMIT 10";
+
+        $query = "SELECT DISTINCT T.*
                 FROM Testi T
                 JOIN Contiene C ON T.Codice = C.CodiceTesto
                 JOIN Tag TA ON TA.Codice = C.CodiceTag
@@ -796,9 +821,15 @@ class Database
                         ORDER BY R.Voto DESC
                     )
                 )
+                AND T.Codice NOT IN (
+                    SELECT A.CodiceTesto
+                    FROM AcquistiCap A
+                    WHERE A.Email = ?
+                )
+                ORDER BY T.Voto DESC
                 LIMIT 10";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $email);
+        $stmt = $this->db->prepare($query1);
+        $stmt->bind_param('ss', $email, $email);
         $stmt->execute();
         $result = $stmt->get_result();
 

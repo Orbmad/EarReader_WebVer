@@ -1,1 +1,1 @@
-- implementa nuova discussione
+-controlla che al momento dell'aggiunta di una recensione sia aggiornato il voto del testo.

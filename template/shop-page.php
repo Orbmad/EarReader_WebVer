@@ -1,6 +1,5 @@
 <main class="shop">
     <section>
-<!--DEBUGGG--><?php var_dump($_SESSION["user"]["Email"]); ?>
 
         <h1>Acquista Ear-Coins</h1>
         <h2>1,00 € = 100 EC</h2>
