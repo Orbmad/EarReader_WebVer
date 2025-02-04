@@ -55,7 +55,7 @@ class Database
      */
     public function getUserLibrary($email)
     {
-        $query = "SELECT 
+        $query = "SELECT DISTINCT
                 T.Codice,
                 T.Data_ora,
                 T.Titolo,
